@@ -98,8 +98,8 @@ async function onPlay() {
 }
 
 async function run() {
-   await faceapi.loadTinyFaceDetectorModel('https://hpssjellis.github.io/face-api.js-for-beginners/')
-   await faceapi.loadFaceLandmarkTinyModel('https://hpssjellis.github.io/face-api.js-for-beginners/')
+   await faceapi.loadTinyFaceDetectorModel('https://hpssjellis.github.io/celeb2-classify/')
+   await faceapi.loadFaceLandmarkTinyModel('https://hpssjellis.github.io/celeb2-classify/')
       
    const stream = await navigator.mediaDevices.getUserMedia({ video: {} })
    const videoEl = document.getElementById('inputVideo')
