@@ -1,7 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="face-api.js"></script>
+  
+<script>
+var isPhoneGapWebView = location.href.match(/^file:/); // returns true for PhoneGap app
+
+if (isPhoneGapWebView){
+   document.writeln('<h1>I am cordova</h1>')
+} else{
+   document.writeln('<h1>I am a web browser</h1>')
+} 
+  
+  
+</script>  
+  
+<script src="face-api.js"></script>
+  
+  
+  
 </head>
 <body>
   <h3 align=center>face-api.js by <a href="https://github.com/justadudewhohacks/face-api.js">@justadudewhohack</a> 
