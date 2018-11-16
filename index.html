@@ -7,7 +7,7 @@ var isPhoneGapWebView = location.href.match(/^file:/); // returns true for Phone
 
 window.addEventListener("orientationchange", function() {
    //if(window.innerHeight > window.innerWidth){document.writeln('<h1>Landscape</h1>');} else {document.writeln('<h1>Portrait</h1>');} 
-   if(window.orientation == 0){document.getElementById('myDiv02').innerHTML = '<h1>Landscape</h1>'} else {document.getElementById('myDiv02').innerHTML = '<h1>Portrait</h1>'}   
+   if(window.orientation == 0){document.getElementById('myDiv02').innerHTML = '<h1>Portrait</h1>'} else {document.getElementById('myDiv02').innerHTML = '<h1>Landscape</h1>'}   
 }, false);
   
   
