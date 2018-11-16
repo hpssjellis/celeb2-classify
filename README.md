@@ -1,7 +1,7 @@
-# face-api.js-for-beginners
+# celeb2-classify
 
 
-https://hpssjellis.github.io/face-api.js-for-beginners/
+https://hpssjellis.github.io/celeb2-classify/
 
 
 
