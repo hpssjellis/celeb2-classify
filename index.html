@@ -5,6 +5,13 @@
 <script>
 var isPhoneGapWebView = location.href.match(/^file:/); // returns true for PhoneGap app
 
+window.addEventListener("orientationchange", function() {
+   //if(window.innerHeight > window.innerWidth){document.writeln('<h1>Landscape</h1>');} else {document.writeln('<h1>Portrait</h1>');} 
+   if(window.orientation== 0){document.writeln('<h1>Landscape</h1>');} else {document.writeln('<h1>Portrait</h1>');}   
+}, false);
+  
+  
+  
 if (isPhoneGapWebView){
    document.writeln('<h1>I am cordova</h1>')
 
@@ -12,7 +19,7 @@ if (isPhoneGapWebView){
    document.writeln('<h1>I am a web browser</h1>')
 } 
   
-if(window.innerHeight > window.innerWidth){document.writeln('<h1>Landscape</h1>');} else {document.writeln('<h1>Portrait</h1>');}  
+
 </script>  
   
 <script src="face-api.js"></script>
