@@ -7,14 +7,12 @@ var isPhoneGapWebView = location.href.match(/^file:/); // returns true for Phone
 
 if (isPhoneGapWebView){
    document.writeln('<h1>I am cordova</h1>')
-   if(window.innerHeight > window.innerWidth){
-    document.writeln('<h1>Landscape</h1>');
- } else {document.writeln('<h1>Portrait</h1>');}
+
 } else{
    document.writeln('<h1>I am a web browser</h1>')
 } 
   
-  
+if(window.innerHeight > window.innerWidth){document.writeln('<h1>Landscape</h1>');} else {document.writeln('<h1>Portrait</h1>');}  
 </script>  
   
 <script src="face-api.js"></script>
