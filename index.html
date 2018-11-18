@@ -47,6 +47,19 @@ if (isPhoneGapWebView){
 
 ////////////////////////// A few helper functions ///////////////////////////////////////////   
   
+function myOrient(){  
+   if(window.orientation == 0){
+       // portrait
+      document.getElementById('inputVideo').width = 640
+      document.getElementById('inputVideo').width = 480
+   } else {
+        // lanscape
+    
+      document.getElementById('inputVideo').width = 480
+      document.getElementById('inputVideo').width = 640 
+   }  
+}  
+  
 function resizeCanvasAndResults(dimensions, canvas, results) {
   const { width, height } = dimensions instanceof HTMLVideoElement
     ? faceapi.getMediaDimensions(dimensions)
@@ -79,6 +92,7 @@ function drawLandmarks(dimensions, canvas, results, withBoxes = true) {
 ////////////////////////// The 2 Main functions ///////////////////////////////////////////  
   
 async function onPlay() {
+   myOrient()
    const videoEl = document.getElementById('inputVideo')
    const options = new faceapi.TinyFaceDetectorOptions({ inputSize: 128, scoreThreshold : 0.3 }) 
 
