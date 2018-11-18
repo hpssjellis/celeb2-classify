@@ -36,20 +36,33 @@ if (isPhoneGapWebView){
   
 <input type=button value=run onclick="{
     run()
-}"><br><br>
-   
- <input type=button value=switch onclick="{   
-     myOrient()
-}"><br><br>
-    
+}"><br>
   
+<input type=button value=orient onclick="{
+    myOrient()
+}"><br>
+   
+ <input type=button value=portrait onclick="{   
+       // portrait
+      document.getElementById('inputVideo').width = 640
+      document.getElementById('inputVideo').width = 480     
+      document.getElementById('overlay').style.top = -647
+}"><br>
+    
+ <input type=button value=landscape onclick="{   
+      // lanscape default working   
+      document.getElementById('inputVideo').width = 480
+      document.getElementById('inputVideo').width = 640 
+      document.getElementById('overlay').style.top = -487
+}"><br><br>
+      
   
 
   
   
 <video onplay="onPlay(this)" id="inputVideo" autoplay muted  width="640" height="480" style=" border: 1px solid #ddd;"></video><br>
 <canvas id="overlay" width="640" height="480" style="position:relative; top:-487px; border: 1px solid #ddd;" ></canvas><br>
-<canvas id="overlay" width="640" height="480" style="position:relative; top:-647px; border: 1px solid #ddd;" ></canvas><br>
+<canvas id="overlay" width="640" height="480" style="position:relative; top:-487px; border: 1px solid #ddd;" ></canvas><br>
   
 </body>
 
@@ -62,12 +75,12 @@ function myOrient(){
        // portrait
       document.getElementById('inputVideo').width = 640
       document.getElementById('inputVideo').width = 480     
-     // document.getElementById('overlay').top = -647
+      document.getElementById('overlay').style.top = -647
    } else {
         // lanscape default working   
       document.getElementById('inputVideo').width = 480
       document.getElementById('inputVideo').width = 640 
-     // document.getElementById('overlay').top = -487
+      document.getElementById('overlay').style.top = -487
    }  
 }  
   
