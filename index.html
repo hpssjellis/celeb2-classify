@@ -60,12 +60,13 @@ function myOrient(){
    if(window.orientation == 0){
        // portrait
       document.getElementById('inputVideo').width = 640
-      document.getElementById('inputVideo').width = 480
+      document.getElementById('inputVideo').width = 480     
+      document.getElementById('overlay').top = -647
    } else {
-        // lanscape
-    
+        // lanscape default working   
       document.getElementById('inputVideo').width = 480
       document.getElementById('inputVideo').width = 640 
+      document.getElementById('overlay').top = -487
    }  
 }  
   
