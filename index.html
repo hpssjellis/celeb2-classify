@@ -174,7 +174,7 @@ async function run() {
    await faceapi.loadFaceLandmarkTinyModel('https://hpssjellis.github.io/face-api.js-for-beginners/')
 
  //  const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: myCamera }, audio: false})
-   const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: myCamera, width:480, height:640 }, audio: false})
+   const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: myCamera, width:640, height:480 }, audio: false})
  //  const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: myCamera } }, audio: false})
  //  const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: 'environment' } }, audio: false})
   // const stream = await navigator.mediaDevices.getUserMedia({video: { cameraFacing: myCamera }, audio: false})
