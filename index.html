@@ -61,11 +61,15 @@ if (isPhoneGapWebView){
       
  <input type=button value=user onclick="{
     myCamera = 'user'
-    alert(myCamera)
+     videoEl.srcObject.getTracks().forEach(track => track.stop()) 
+    //alert(myCamera)
+    run()
 }"><br> 
   <input type=button value=environment onclick="{
     myCamera = 'environment'
-    alert(myCamera)
+    videoEl.srcObject.getTracks().forEach(track => track.stop()) 
+  // alert(myCamera)
+  run()                                              
 }"><br> 
   
     <input type=button value=stop onclick="{
@@ -169,9 +173,9 @@ async function run() {
    await faceapi.loadTinyFaceDetectorModel('https://hpssjellis.github.io/face-api.js-for-beginners/')
    await faceapi.loadFaceLandmarkTinyModel('https://hpssjellis.github.io/face-api.js-for-beginners/')
 
-  // const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: myCamera }, audio: false})
+   const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: myCamera }, audio: false})
  //  const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: myCamera } }, audio: false})
-   const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: 'environment' } }, audio: false})
+ //  const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: 'environment' } }, audio: false})
   // const stream = await navigator.mediaDevices.getUserMedia({video: { cameraFacing: myCamera }, audio: false})
 
    videoEl.srcObject = stream
