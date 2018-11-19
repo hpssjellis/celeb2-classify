@@ -57,11 +57,7 @@ if (isPhoneGapWebView){
 }"><br> 
   
   
-  
-  
-<input type=button value=orient onclick="{
-    myOrient()
-}"><br>
+
    
  <input type=button value=portrait onclick="{   
        // portrait
@@ -125,7 +121,7 @@ function myOrient(){
   
   
 window.addEventListener("orientationchange", function() {
-   myOrient()
+  // myOrient()
    videoEl.srcObject.getTracks().forEach(track => track.stop()) 
    run() 
    //if(window.innerHeight > window.innerWidth){document.writeln('<h1>Landscape</h1>');} else {document.writeln('<h1>Portrait</h1>');} 
@@ -200,7 +196,7 @@ async function onPlay() {
 }
 
 async function run() {
-   myOrient()
+  // myOrient()
    await faceapi.loadTinyFaceDetectorModel('https://hpssjellis.github.io/face-api.js-for-beginners/')
    await faceapi.loadFaceLandmarkTinyModel('https://hpssjellis.github.io/face-api.js-for-beginners/')
 
