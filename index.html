@@ -127,7 +127,13 @@ function resizeCanvasAndResults(dimensions, canvas, results) {
   const { width, height } = dimensions instanceof HTMLVideoElement
     ? faceapi.getMediaDimensions(dimensions)
     : dimensions
-  
+    canvas.width = width
+    canvas.height = height
+
+  return results.map(res => res.forSize(width, height))
+}
+
+/*  
   if(window.orientation == 0){
      //portrait
      canvas.width = height
@@ -139,8 +145,9 @@ function resizeCanvasAndResults(dimensions, canvas, results) {
   }
   return results.map(res => res.forSize(width, height))
 }
-
+*/
   
+
 function drawDetections(dimensions, canvas, detections) {
   const resizedDetections = resizeCanvasAndResults(dimensions, canvas, detections)
   faceapi.drawDetection(canvas, resizedDetections)
