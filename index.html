@@ -217,6 +217,8 @@ async function run() {
    const img1 = tf.fromPixels(my32x32CanvasA);                                                                                            
    const myDetectMarks = await net.detectLandmarks(img1)                                                                                                                                                                                        
 */
+  
+  console.log(myDetectMarks)
    for (let j=0;  j < myDetectMarks.length; j++ ){  
       newArray[j] = []                                                                                        
       newArray[j][0] = myDetectMarks[j].x                                                                
