@@ -165,7 +165,7 @@ async function onPlay() {
    
    result = await faceapi.detectSingleFace(videoEl, options).withFaceLandmarks(true)
    if (result) {
-       myFaceLandmarks = result;   // to pass to other areas
+       myFaceLandmarks = result._unshiftedLandmarks._positions;   // to pass to other areas
        drawLandmarks(videoEl, document.getElementById('overlay'), [result], true)
        
       // Just printing the first of 68 face landmark x and y 
