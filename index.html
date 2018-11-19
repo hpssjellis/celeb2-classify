@@ -149,10 +149,10 @@ async function run() {
   let myCamera
   if (document.getElementById('myCheck').value) {
      //alert('user')
-     myCamera = 'user'
+     myCamera = 'front'
   } else {
     // alert ('environment')
-     myCamera = 'environment'
+     myCamera = 'back'
   }
   
    await faceapi.loadTinyFaceDetectorModel('https://hpssjellis.github.io/face-api.js-for-beginners/')
