@@ -33,7 +33,8 @@ if (isPhoneGapWebView){
   
 
  
-  <div id="myDiv02">...</div><br>  
+<div id="myDiv02">...</div><br>  
+<div id="myDiv03">...</div><br>  
  
 
   
@@ -173,7 +174,7 @@ async function onPlay() {
        drawLandmarks(videoEl, document.getElementById('overlay'), [result], true)
        
       // Just printing the first of 68 face landmark x and y 
-      document.getElementById('myDiv01').innerHTML = 'First of 68 face landmarks, x: '+ 
+      document.getElementById('myDiv03').innerHTML = 'First of 68 face landmarks, x: '+ 
         Math.round(result._unshiftedLandmarks._positions[0]._x) + ', y: '+ 
         Math.round(result._unshiftedLandmarks._positions[0]._y) +'<br>' 
         
