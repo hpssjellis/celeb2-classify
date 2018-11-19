@@ -51,7 +51,11 @@ if (isPhoneGapWebView){
     }                                                         
     videoEl.srcObject.getTracks().forEach(track => track.stop()) 
     run()        
-}"><br>
+}"><br>    
+  
+<input type=button value=stop onclick="{
+   videoEl.srcObject.getTracks().forEach(track => track.stop()) 
+}"><br> 
   
 <input type=button value=orient onclick="{
     myOrient()
@@ -84,9 +88,7 @@ if (isPhoneGapWebView){
   run()                                              
 }"><br> 
   
-    <input type=button value=stop onclick="{
-videoEl.srcObject.getTracks().forEach(track => track.stop()) 
-}"><br> 
+
   
 
   
