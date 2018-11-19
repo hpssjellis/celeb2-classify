@@ -33,9 +33,7 @@ if (isPhoneGapWebView){
     simplified for beginners by <a href="https://www.rocksetta.com/tensorflowjs/">@rocksetta</a></h3>
   Preset for landscape viewing. The <a href="https://github.com/hpssjellis/face-api.js-for-beginners">github is here</a><br>  
 <div id="myDiv01">...</div><br>  
-  
-<input type=checkbox id="myCheck" onclick="{run()}">Rear Camera<br>  
-  
+    
   
 <input type=button value=run onclick="{
     run()
@@ -100,13 +98,13 @@ const videoEl = document.getElementById('inputVideo')
 function myOrient(){  
    if(window.orientation == 0){
        // portrait
-      document.getElementById('inputVideo').width = 640
-      document.getElementById('inputVideo').width = 480     
+      document.getElementById('inputVideo').width = 480
+      document.getElementById('inputVideo').height = 640    
       document.getElementById('overlay').style.top = '-647px'
    } else {
         // lanscape default working   
-      document.getElementById('inputVideo').width = 480
-      document.getElementById('inputVideo').width = 640 
+      document.getElementById('inputVideo').width = 640
+      document.getElementById('inputVideo').height = 480 
       document.getElementById('overlay').style.top = '-487px'
    }  
 }  
