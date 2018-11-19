@@ -29,11 +29,11 @@ if (isPhoneGapWebView){
 <div id="myDiv01">...</div><br>  
     
   
-<input type=button value=run onclick="{
+<input type=button style="font-size:25px;" value=" run " onclick="{
     run()
-}"><br>  
+}">  
   
-<input type=button value="switch to environment" onclick="{
+<input type=button style="font-size:25px;" value="switch to environment" onclick="{
    if (this.value == 'switch to environment'){                                                       
        myCamera = 'environment'
        this.value = 'switch to user' 
@@ -43,11 +43,16 @@ if (isPhoneGapWebView){
     }                                                         
     videoEl.srcObject.getTracks().forEach(track => track.stop()) 
     run()        
-}"><br>    
+}">    
   
-<input type=button value=stop onclick="{
+<input type=button style="font-size:25px;" value=stop onclick="{
    videoEl.srcObject.getTracks().forEach(track => track.stop()) 
-}"><br> 
+}"><br> <br>
+  
+  
+  <input type=button style="font-size:25px;" value=" new " onclick="{
+
+}"><br> <br> 
   
   
    
