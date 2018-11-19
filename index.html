@@ -34,6 +34,9 @@ if (isPhoneGapWebView){
   Preset for landscape viewing. The <a href="https://github.com/hpssjellis/face-api.js-for-beginners">github is here</a><br>  
 <div id="myDiv01">...</div><br>  
   
+<input type=checkbox id="myCheck" onclick="{run()}">Rear Camera<br>  
+  
+  
 <input type=button value=run onclick="{
     run()
 }"><br>
@@ -143,10 +146,11 @@ async function onPlay() {
 }
 
 async function run() {
+   const myCamera = await document.getElementById('myCheck').value
    await faceapi.loadTinyFaceDetectorModel('https://hpssjellis.github.io/face-api.js-for-beginners/')
    await faceapi.loadFaceLandmarkTinyModel('https://hpssjellis.github.io/face-api.js-for-beginners/')
-      
-   const stream = await navigator.mediaDevices.getUserMedia({ video: {} })
+
+   const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: myCamera }, audio: false})
    const videoEl = document.getElementById('inputVideo')
    videoEl.srcObject = stream
 }
