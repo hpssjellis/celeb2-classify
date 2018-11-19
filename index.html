@@ -36,8 +36,7 @@ if (isPhoneGapWebView){
   <div id="myDiv02">...</div><br>  
  
 <div id="myDiv01">...</div><br>  
-<input type=text id="myClassText" style="font-size:25px;" value = "joe">     
-<input type=text id="myClassNumber" style="font-size:25px;" value = "0">    <br> <br> 
+
   
 <input type=button style="font-size:25px;" value=" run " onclick="{
     run()
@@ -58,6 +57,10 @@ if (isPhoneGapWebView){
 <input type=button style="font-size:25px;" value=stop onclick="{
    videoEl.srcObject.getTracks().forEach(track => track.stop()) 
 }"><br> <br>
+ 
+ 
+ <input type=text id="myClassText" style="font-size:25px;" value = "joe">     
+<input type=text id="myClassNumber" style="font-size:25px;" value = "0">    <br> <br> 
   
   
   <input type=button style="font-size:25px;" value=" new " onclick="{
@@ -231,7 +234,7 @@ async function run() {
  
    const myAddCount = classifier.getClassExampleCount()[document.getElementById('myClassNumber').value]
    const myGroupNumber =  document.getElementById('myClassNumber').value                                                                                         
-   document.getElementById('myDiv02').innerHTML = myAddCount + ' times, Example Added: to group #: '+ myGroupNumber 
+   document.getElementById('myDiv02').innerHTML = myAddCount + ' times, Example Added: to group #: '+ myGroupNumber + 'Label:'+document.getElementById('myClassText').value
                                                                                              
 }
   
