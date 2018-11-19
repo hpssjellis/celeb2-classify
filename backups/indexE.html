@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+<script>
+var isPhoneGapWebView = location.href.match(/^file:/); // returns true for PhoneGap app
+  
+if (isPhoneGapWebView){
+  // document.writeln('<h1>I am cordova</h1>')
+
+} else{
+  // document.writeln('<h1>I am a web browser</h1>')
+} 
+  
+
+  
+</script>  
+  
+<script src="face-api.js"></script>
+  
+  
+  
+</head>
+<body>
+  <div id="myDiv02">...</div><br>  
+  <h3 align=center>face-api.js by <a href="https://github.com/justadudewhohacks/face-api.js">@justadudewhohack</a> 
+    simplified for beginners by <a href="https://www.rocksetta.com/tensorflowjs/">@rocksetta</a></h3>
+  Preset for landscape viewing. The <a href="https://github.com/hpssjellis/face-api.js-for-beginners">github is here</a><br>  
+<div id="myDiv01">...</div><br>  
+    
+  
+<input type=button style="font-size:25px;" value=" run " onclick="{
+    run()
+}">  
+  
+<input type=button style="font-size:25px;" value="switch to environment" onclick="{
+   if (this.value == 'switch to environment'){                                                       
+       myCamera = 'environment'
+       this.value = 'switch to user' 
+    } else {                                                      
+       myCamera = 'user'
+       this.value = 'switch to environment'                                                     
+    }                                                         
+    videoEl.srcObject.getTracks().forEach(track => track.stop()) 
+    run()        
+}">    
+  
+<input type=button style="font-size:25px;" value=stop onclick="{
+   videoEl.srcObject.getTracks().forEach(track => track.stop()) 
+}"><br> <br>
+  
+  
+  <input type=button style="font-size:25px;" value=" new " onclick="{
+
+}"><br> <br> 
+  
+  
+   
+<video onplay="onPlay(this)" id="inputVideo" autoplay muted  width="640" height="480" style=" border: 1px solid #ddd;"></video><br>
+<canvas id="overlay" width="640" height="480" style="position:relative; top:-487px; border: 1px solid #ddd;" ></canvas><br>
+<canvas id="overlay" width="640" height="480" style="position:relative; top:-487px; border: 1px solid #ddd;" ></canvas><br>
+  
+</body>
+
+<script>
+
+
+////////////////////////// Globals ///////////////////////////////////////////     
+  
+let stream  
+let myCamera = 'user'  
+const videoEl = document.getElementById('inputVideo')  
+  
+////////////////////////// A few helper functions ///////////////////////////////////////////   
+   
+function myOrient(){  // not using anymore
+   if(window.orientation == 0){
+       // portrait
+      document.getElementById('inputVideo').width = 480
+      document.getElementById('inputVideo').height = 640    
+      document.getElementById('overlay').width = 480
+      document.getElementById('overlay').height = 640  
+      document.getElementById('overlay').style.top = '-647px'
+   } else {
+        // lanscape default working   
+      document.getElementById('inputVideo').width = 640
+      document.getElementById('inputVideo').height = 480 
+      document.getElementById('overlay').width = 640
+      document.getElementById('overlay').height = 480 
+      document.getElementById('overlay').style.top = '-487px'
+   }  
+}  
+  
+  
+  
+  
+  
+  
+  
+window.addEventListener("orientationchange", function() {
+  // myOrient()
+   videoEl.srcObject.getTracks().forEach(track => track.stop()) 
+   run() 
+   // if(window.orientation == 0){document.getElementById('myDiv02').innerHTML = '<h1>Portrait</h1>'} else {document.getElementById('myDiv02').innerHTML = '<h1>Landscape</h1>'}   
+}, false);
+  
+   
+  
+function resizeCanvasAndResults(dimensions, canvas, results) {
+  const { width, height } = dimensions instanceof HTMLVideoElement
+    ? faceapi.getMediaDimensions(dimensions)
+    : dimensions
+    canvas.width = width
+    canvas.height = height
+
+  return results.map(res => res.forSize(width, height))
+}
+
+  
+function drawDetections(dimensions, canvas, detections) {
+  const resizedDetections = resizeCanvasAndResults(dimensions, canvas, detections)
+  faceapi.drawDetection(canvas, resizedDetections)
+}
+
+  
+function drawLandmarks(dimensions, canvas, results, withBoxes = true) {
+  const resizedResults = resizeCanvasAndResults(dimensions, canvas, results)
+  if (withBoxes) {
+      faceapi.drawDetection(canvas, resizedResults.map(det => det.detection))
+  }
+  const faceLandmarks = resizedResults.map(det => det.landmarks)
+  const drawLandmarksOptions = { lineWidth: 2, drawLines: true, color: 'green' }
+  faceapi.drawLandmarks(canvas, faceLandmarks, drawLandmarksOptions)
+}    
+    
+
+  
+////////////////////////// The 2 Main functions ///////////////////////////////////////////  
+  
+async function onPlay() {
+
+   const videoEl = document.getElementById('inputVideo')
+   const options = new faceapi.TinyFaceDetectorOptions({ inputSize: 128, scoreThreshold : 0.3 }) 
+
+   
+   result = await faceapi.detectSingleFace(videoEl, options).withFaceLandmarks(true)
+   if (result) {
+       drawLandmarks(videoEl, document.getElementById('overlay'), [result], true)
+     
+      // Just printing the first of 68 face landmark x and y 
+      document.getElementById('myDiv01').innerHTML = 'First of 68 face landmarks, x: '+ 
+        Math.round(result._unshiftedLandmarks._positions[0]._x) + ', y: '+ 
+        Math.round(result._unshiftedLandmarks._positions[0]._y) +'<br>' 
+        
+   }
+
+    setTimeout(() => onPlay())
+}
+
+async function run() {
+  // myOrient()
+   await faceapi.loadTinyFaceDetectorModel('https://hpssjellis.github.io/face-api.js-for-beginners/')
+   await faceapi.loadFaceLandmarkTinyModel('https://hpssjellis.github.io/face-api.js-for-beginners/')
+ 
+  if(window.orientation == 0){
+      // portrait
+      stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: myCamera, width:480, height:640 }, audio: false}) 
+  } else {
+      // landscape
+      stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: myCamera, width:640, height:480 }, audio: false})
+  }
+   
+   videoEl.srcObject = stream
+
+}
+
+</script>
+</body>
+</html>
