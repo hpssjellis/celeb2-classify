@@ -59,6 +59,13 @@ if (isPhoneGapWebView){
       document.getElementById('overlay').style.top = -487
 }"><br><br>
       
+ <input type=button value=user onclick="{
+    myCamera = 'user'
+}"><br> 
+  <input type=button value=environment onclick="{
+    myCamera = 'environment'
+}"><br> 
+  
   
 
   
@@ -71,6 +78,9 @@ if (isPhoneGapWebView){
 
 <script>
 
+let myCamera = 'user'  
+  
+  
 ////////////////////////// A few helper functions ///////////////////////////////////////////   
   
 function myOrient(){  
@@ -146,22 +156,13 @@ async function onPlay() {
 }
 
 async function run() {
-  let myCamera
- // alert(document.getElementById('myCheck').value)
-  if (document.getElementById('myCheck').value == 'on') {
-     //alert('user')
-     myCamera = 'user'
-  } else {
-    // alert ('environment')
-     myCamera = 'environment'
-  }
-  
+
    await faceapi.loadTinyFaceDetectorModel('https://hpssjellis.github.io/face-api.js-for-beginners/')
    await faceapi.loadFaceLandmarkTinyModel('https://hpssjellis.github.io/face-api.js-for-beginners/')
 
   // const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: myCamera }, audio: false})
-  // const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: myCamera } }, audio: false})
-   const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: 'environment' } }, audio: false})
+   const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: myCamera } }, audio: false})
+  // const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: 'environment' } }, audio: false})
   // const stream = await navigator.mediaDevices.getUserMedia({video: { cameraFacing: myCamera }, audio: false})
    const videoEl = document.getElementById('inputVideo')
    videoEl.srcObject = stream
