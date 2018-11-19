@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+<script>
+var isPhoneGapWebView = location.href.match(/^file:/); // returns true for PhoneGap app
+
+window.addEventListener("orientationchange", function() {
+   //if(window.innerHeight > window.innerWidth){document.writeln('<h1>Landscape</h1>');} else {document.writeln('<h1>Portrait</h1>');} 
+   if(window.orientation == 0){document.getElementById('myDiv02').innerHTML = '<h1>Portrait</h1>'} else {document.getElementById('myDiv02').innerHTML = '<h1>Landscape</h1>'}   
+}, false);
+  
+  
+  
+if (isPhoneGapWebView){
+   document.writeln('<h1>I am cordova</h1>')
+
+} else{
+   document.writeln('<h1>I am a web browser</h1>')
+} 
+  
+
+</script>  
+  
+<script src="face-api.js"></script>
+  
+  
+  
+</head>
+<body>
+  <div id="myDiv02">...</div><br>  
+  <h3 align=center>face-api.js by <a href="https://github.com/justadudewhohacks/face-api.js">@justadudewhohack</a> 
+    simplified for beginners by <a href="https://www.rocksetta.com/tensorflowjs/">@rocksetta</a></h3>
+  Preset for landscape viewing. The <a href="https://github.com/hpssjellis/face-api.js-for-beginners">github is here</a><br>  
+<div id="myDiv01">...</div><br>  
+  
+<input type=checkbox id="myCheck" onclick="{run()}">Rear Camera<br>  
+  
+  
+<input type=button value=run onclick="{
+    run()
+}"><br>
+  
+<input type=button value=orient onclick="{
+    myOrient()
+}"><br>
+   
+ <input type=button value=portrait onclick="{   
+       // portrait
+      document.getElementById('inputVideo').width = 640
+      document.getElementById('inputVideo').width = 480     
+      document.getElementById('overlay').style.top = -1287
+}"><br>
+    
+ <input type=button value=landscape onclick="{   
+      // lanscape default working   
+      document.getElementById('inputVideo').width = 480
+      document.getElementById('inputVideo').width = 640 
+      document.getElementById('overlay').style.top = -487
+}"><br><br>
+      
+ <input type=button value=user onclick="{
+    myCamera = 'user'
+     videoEl.srcObject.getTracks().forEach(track => track.stop()) 
+    //alert(myCamera)
+    run()
+}"><br> 
+  <input type=button value=environment onclick="{
+    myCamera = 'environment'
+    videoEl.srcObject.getTracks().forEach(track => track.stop()) 
+  // alert(myCamera)
+  run()                                              
+}"><br> 
+  
+    <input type=button value=stop onclick="{
+videoEl.srcObject.getTracks().forEach(track => track.stop()) 
+}"><br> 
+  
+
+  
+  
+<video onplay="onPlay(this)" id="inputVideo" autoplay muted  width="640" height="480" style=" border: 1px solid #ddd;"></video><br>
+<canvas id="overlay" width="640" height="480" style="position:relative; top:-487px; border: 1px solid #ddd;" ></canvas><br>
+<canvas id="overlay" width="640" height="480" style="position:relative; top:-487px; border: 1px solid #ddd;" ></canvas><br>
+  
+</body>
+
+<script>
+
+
+////////////////////////// Globals ///////////////////////////////////////////     
+  
+  
+let myCamera = 'user'  
+const videoEl = document.getElementById('inputVideo')  
+  
+////////////////////////// A few helper functions ///////////////////////////////////////////   
+  
+function myOrient(){  
+   if(window.orientation == 0){
+       // portrait
+      document.getElementById('inputVideo').width = 640
+      document.getElementById('inputVideo').width = 480     
+      document.getElementById('overlay').style.top = -2000
+   } else {
+        // lanscape default working   
+      document.getElementById('inputVideo').width = 480
+      document.getElementById('inputVideo').width = 640 
+      document.getElementById('overlay').style.top = -487
+   }  
+}  
+  
+function resizeCanvasAndResults(dimensions, canvas, results) {
+  const { width, height } = dimensions instanceof HTMLVideoElement
+    ? faceapi.getMediaDimensions(dimensions)
+    : dimensions
+  
+  if(window.orientation == 0){
+     //portrait
+     canvas.width = height
+     canvas.height = width
+  } else {
+    //landscape
+     canvas.width = width
+     canvas.height = height
+  }
+  return results.map(res => res.forSize(width, height))
+}
+
+  
+function drawDetections(dimensions, canvas, detections) {
+  const resizedDetections = resizeCanvasAndResults(dimensions, canvas, detections)
+  faceapi.drawDetection(canvas, resizedDetections)
+}
+
+  
+function drawLandmarks(dimensions, canvas, results, withBoxes = true) {
+  const resizedResults = resizeCanvasAndResults(dimensions, canvas, results)
+  if (withBoxes) {
+      faceapi.drawDetection(canvas, resizedResults.map(det => det.detection))
+  }
+  const faceLandmarks = resizedResults.map(det => det.landmarks)
+  const drawLandmarksOptions = { lineWidth: 2, drawLines: true, color: 'green' }
+  faceapi.drawLandmarks(canvas, faceLandmarks, drawLandmarksOptions)
+}    
+    
+
+  
+////////////////////////// The 2 Main functions ///////////////////////////////////////////  
+  
+async function onPlay() {
+
+   const videoEl = document.getElementById('inputVideo')
+   const options = new faceapi.TinyFaceDetectorOptions({ inputSize: 128, scoreThreshold : 0.3 }) 
+
+   
+   result = await faceapi.detectSingleFace(videoEl, options).withFaceLandmarks(true)
+   if (result) {
+       drawLandmarks(videoEl, document.getElementById('overlay'), [result], true)
+     
+      // Just printing the first of 68 face landmark x and y 
+      document.getElementById('myDiv01').innerHTML = 'First of 68 face landmarks, x: '+ 
+        Math.round(result._unshiftedLandmarks._positions[0]._x) + ', y: '+ 
+        Math.round(result._unshiftedLandmarks._positions[0]._y) +'<br>' 
+        
+   }
+
+    setTimeout(() => onPlay())
+}
+
+async function run() {
+
+   await faceapi.loadTinyFaceDetectorModel('https://hpssjellis.github.io/face-api.js-for-beginners/')
+   await faceapi.loadFaceLandmarkTinyModel('https://hpssjellis.github.io/face-api.js-for-beginners/')
+
+   const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: myCamera }, audio: false})
+ //  const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: myCamera } }, audio: false})
+ //  const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: 'environment' } }, audio: false})
+  // const stream = await navigator.mediaDevices.getUserMedia({video: { cameraFacing: myCamera }, audio: false})
+
+   videoEl.srcObject = stream
+
+}
+
+</script>
+</body>
+</html>
