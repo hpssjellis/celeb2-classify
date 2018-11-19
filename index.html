@@ -212,16 +212,6 @@ async function run() {
  
  
  myNewTrain = async function(myDetectMarks){   
-/*
-   let myCanvasElement = document.getElementById('my32x32CanvasA');
-   let myCTX = myCanvasElement.getContext('2d');
-   myCTX.drawImage(myVideoStream, 0, 0, myCanvasElement.width, myCanvasElement.height);   
-                                     
-   const img1 = tf.fromPixels(my32x32CanvasA);                                                                                            
-   const myDetectMarks = await net.detectLandmarks(img1)                                                                                                                                                                                        
-*/
-  
- //console.log(myDetectMarks)
   
    for (let j=0;  j < myDetectMarks.length; j++ ){  
       newArray[j] = []                                                                                        
@@ -240,7 +230,23 @@ async function run() {
 }
   
  
- 
+  myNewPredict = async function(myDetectMarks){   
+  
+   for (let j=0;  j < myDetectMarks.length; j++ ){  
+      newArray[j] = []                                                                                        
+      newArray[j][0] = myDetectMarks[j].x                                                                
+      newArray[j][1] = myDetectMarks[j].y  
+   }                                                                                          
+   
+   
+ const myFindMatch = await classifier.predictClass(tf.tensor2d(newArray, shape=[68,2]), 1);   // number of groups
+  
+  // classifier.addExample(tf.tensor2d(newArray, shape=[68,2]), parseInt(document.getElementById('myClassNumber').value));                                                              
+                                                                                                                 
+    document.getElementById('myDiv01').innerHTML =  'Nearest: <span style=color:blue; onclick={myLoadOneImage('+myFindMatch.classIndex+')}>'+myGroups[myFindMatch.classIndex]+ '</span><br>' + document.getElementById('myDiv01').innerHTML                                                                                        
+                                                 
+                                                                                             
+}
  
  
  
