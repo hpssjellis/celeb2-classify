@@ -242,43 +242,15 @@ async function run() {
       newArray[j][1] = myDetectMarks[j].y  
    }                                                                                          
 
-   const myFindMatch = await classifier.predictClass(tf.tensor2d(newArray, shape=[68,2]), 1);   // number of groups                                                                                                               
+   const myFindMatch = await classifier.predictClass(tf.tensor2d(newArray, shape=[68,2]), 3);   // number of groups   
+   console.log(myFindMatch)
   // document.getElementById('myDiv01').innerHTML =  'Nearest: <span style=color:blue; onclick={myLoadOneImage('+myFindMatch.classIndex+')}>'+myGroups[myFindMatch.classIndex]+ '</span><br>' + document.getElementById('myDiv01').innerHTML                                                                                        
-   document.getElementById('myDiv01').innerHTML =  `<input type=button onclick=window.open('https://www.google.com/search?&tbm=isch&q=`+myGroups[result.classIndex]+`','_self') value=`+myGroups[result.classIndex]+ `><br>` + document.getElementById('myDiv01').innerHTML                                                                                                                                             
+   document.getElementById('myDiv01').innerHTML =  `<input type=button onclick=window.open('https://www.google.com/search?&tbm=isch&q=`+myGroups[myFindMatch.classIndex]+`','_self') value=`+myGroups[myFindMatch.classIndex]+ `><br>` + document.getElementById('myDiv01').innerHTML                                                                                                                                             
 }
  
  
  
- myLoadOneImage  = async function(myGroupNumber){ 
-   let myUrlArray = []                                                                                        
-   const myIn = document.getElementById('myArray01').value.split('***')                                                                                        
-   for (myIteration = 0;  myIteration < myIn.length; myIteration++){ 
-      myIncomingImages[myIteration] = []    // make new part of 2D array                                                                         
-      myIncomingImages[myIteration] = myIn[myIteration].split(',')    // [0] = groups,   [1] = labels,    [2] = Image URL
-      let myI = parseInt(myIncomingImages[myIteration][0])  
-       myUrlArray[myI] =  myIncomingImages[myIteration][2]   
-                                                                                           
-   }  //set up myIncomingImages array    **** note: Thisarray only keeps one URL                                                                                     
-                                                                                           
-      // console.log(myUrlArray)                                                                                    
-                                                                                           
-      let myFileName2 =  myUrlArray[myGroupNumber]    // the URL                                                                                   
-      if (myFileName2 != null) {
-        let img = new Image()
-        img.src = myFileName2
-        img.crossOrigin = 'Anonymous'                                                                                            
-                                                                                                                                                                                    
-        let can6 = document.getElementById('myInCanvas');
-        let ctx6 = can6.getContext('2d');  
-                                                                                                                                                                                                                                                                             
-        img.onload = await async function() {
-            ctx6.drawImage(img, 0, 0, img.width, img.height, 0, 0, can6.width, can6.height);                                         
-        } 
-                                                                                                                
-     }                                                                                         
-                                                                                           
- }   
- 
+
  
  
  
