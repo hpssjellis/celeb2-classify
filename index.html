@@ -6,40 +6,7 @@
 var isPhoneGapWebView = location.href.match(/^file:/); // returns true for PhoneGap app
 
   
-   
-function myOrient(){  
-   if(window.orientation == 0){
-       // portrait
-      document.getElementById('inputVideo').width = 480
-      document.getElementById('inputVideo').height = 640    
-      document.getElementById('overlay').width = 480
-      document.getElementById('overlay').height = 640  
-      document.getElementById('overlay').style.top = '-647px'
-   } else {
-        // lanscape default working   
-      document.getElementById('inputVideo').width = 640
-      document.getElementById('inputVideo').height = 480 
-      document.getElementById('overlay').width = 640
-      document.getElementById('overlay').height = 480 
-      document.getElementById('overlay').style.top = '-487px'
-   }  
-}  
-  
-  
-  
-  
-  
-  
-  
-window.addEventListener("orientationchange", function() {
-   myOrient()
-   videoEl.srcObject.getTracks().forEach(track => track.stop()) 
-   run() 
-   //if(window.innerHeight > window.innerWidth){document.writeln('<h1>Landscape</h1>');} else {document.writeln('<h1>Portrait</h1>');} 
-   if(window.orientation == 0){document.getElementById('myDiv02').innerHTML = '<h1>Portrait</h1>'} else {document.getElementById('myDiv02').innerHTML = '<h1>Landscape</h1>'}   
-}, false);
-  
-  
+
   
 if (isPhoneGapWebView){
    document.writeln('<h1>I am cordova</h1>')
@@ -132,7 +99,40 @@ let myCamera = 'user'
 const videoEl = document.getElementById('inputVideo')  
   
 ////////////////////////// A few helper functions ///////////////////////////////////////////   
- 
+   
+function myOrient(){  
+   if(window.orientation == 0){
+       // portrait
+      document.getElementById('inputVideo').width = 480
+      document.getElementById('inputVideo').height = 640    
+      document.getElementById('overlay').width = 480
+      document.getElementById('overlay').height = 640  
+      document.getElementById('overlay').style.top = '-647px'
+   } else {
+        // lanscape default working   
+      document.getElementById('inputVideo').width = 640
+      document.getElementById('inputVideo').height = 480 
+      document.getElementById('overlay').width = 640
+      document.getElementById('overlay').height = 480 
+      document.getElementById('overlay').style.top = '-487px'
+   }  
+}  
+  
+  
+  
+  
+  
+  
+  
+window.addEventListener("orientationchange", function() {
+   myOrient()
+   videoEl.srcObject.getTracks().forEach(track => track.stop()) 
+   run() 
+   //if(window.innerHeight > window.innerWidth){document.writeln('<h1>Landscape</h1>');} else {document.writeln('<h1>Portrait</h1>');} 
+   if(window.orientation == 0){document.getElementById('myDiv02').innerHTML = '<h1>Portrait</h1>'} else {document.getElementById('myDiv02').innerHTML = '<h1>Landscape</h1>'}   
+}, false);
+  
+   
   
 function resizeCanvasAndResults(dimensions, canvas, results) {
   const { width, height } = dimensions instanceof HTMLVideoElement
