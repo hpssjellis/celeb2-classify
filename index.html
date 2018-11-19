@@ -234,7 +234,8 @@ async function run() {
  
    const myAddCount = classifier.getClassExampleCount()[document.getElementById('myClassNumber').value]
    const myGroupNumber =  document.getElementById('myClassNumber').value                                                                                         
-   document.getElementById('myDiv02').innerHTML = myAddCount + ' times, Example Added: to group #: '+ myGroupNumber + 'Label:'+document.getElementById('myClassText').value
+   document.getElementById('myDiv02').innerHTML =  'Group #: '+ myGroupNumber + 
+    ', with Label:'+document.getElementById('myClassText').value + ', number of times:' + myAddCount
                                                                                              
 }
   
