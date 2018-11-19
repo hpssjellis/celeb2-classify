@@ -235,23 +235,50 @@ async function run() {
 }
   
  
-  myNewPredict = async function(myDetectMarks){   
-  
+  myNewPredict = async function(myDetectMarks){    
    for (let j=0;  j < myDetectMarks.length; j++ ){  
       newArray[j] = []                                                                                        
       newArray[j][0] = myDetectMarks[j].x                                                                
       newArray[j][1] = myDetectMarks[j].y  
    }                                                                                          
-   
-   
- const myFindMatch = await classifier.predictClass(tf.tensor2d(newArray, shape=[68,2]), 1);   // number of groups
-  
-  // classifier.addExample(tf.tensor2d(newArray, shape=[68,2]), parseInt(document.getElementById('myClassNumber').value));                                                              
-                                                                                                                 
-    document.getElementById('myDiv01').innerHTML =  'Nearest: <span style=color:blue; onclick={myLoadOneImage('+myFindMatch.classIndex+')}>'+myGroups[myFindMatch.classIndex]+ '</span><br>' + document.getElementById('myDiv01').innerHTML                                                                                        
-                                                 
-                                                                                             
+
+   const myFindMatch = await classifier.predictClass(tf.tensor2d(newArray, shape=[68,2]), 1);   // number of groups                                                                                                               
+   document.getElementById('myDiv01').innerHTML =  'Nearest: <span style=color:blue; onclick={myLoadOneImage('+myFindMatch.classIndex+')}>'+myGroups[myFindMatch.classIndex]+ '</span><br>' + document.getElementById('myDiv01').innerHTML                                                                                        
+                                                                                                                                             
 }
+ 
+ 
+ 
+ myLoadOneImage  = async function(myGroupNumber){ 
+   let myUrlArray = []                                                                                        
+   const myIn = document.getElementById('myArray01').value.split('***')                                                                                        
+   for (myIteration = 0;  myIteration < myIn.length; myIteration++){ 
+      myIncomingImages[myIteration] = []    // make new part of 2D array                                                                         
+      myIncomingImages[myIteration] = myIn[myIteration].split(',')    // [0] = groups,   [1] = labels,    [2] = Image URL
+      let myI = parseInt(myIncomingImages[myIteration][0])  
+       myUrlArray[myI] =  myIncomingImages[myIteration][2]   
+                                                                                           
+   }  //set up myIncomingImages array    **** note: Thisarray only keeps one URL                                                                                     
+                                                                                           
+      // console.log(myUrlArray)                                                                                    
+                                                                                           
+      let myFileName2 =  myUrlArray[myGroupNumber]    // the URL                                                                                   
+      if (myFileName2 != null) {
+        let img = new Image()
+        img.src = myFileName2
+        img.crossOrigin = 'Anonymous'                                                                                            
+                                                                                                                                                                                    
+        let can6 = document.getElementById('myInCanvas');
+        let ctx6 = can6.getContext('2d');  
+                                                                                                                                                                                                                                                                             
+        img.onload = await async function() {
+            ctx6.drawImage(img, 0, 0, img.width, img.height, 0, 0, can6.width, can6.height);                                         
+        } 
+                                                                                                                
+     }                                                                                         
+                                                                                           
+ }   
+ 
  
  
  
