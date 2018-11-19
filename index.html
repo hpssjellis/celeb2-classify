@@ -39,6 +39,18 @@ if (isPhoneGapWebView){
   
 <input type=button value=run onclick="{
     run()
+}"><br>  
+  
+<input type=button value="switch to environment" onclick="{
+   if (this.value == 'switch to environment'){                                                       
+       myCamera = 'environment'
+       this.value = 'switch to user' 
+    } else {                                                      
+       myCamera = 'user'
+       this.value = 'switch to environment'                                                     
+    }                                                         
+    videoEl.srcObject.getTracks().forEach(track => track.stop()) 
+    run()        
 }"><br>
   
 <input type=button value=orient onclick="{
