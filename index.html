@@ -57,6 +57,9 @@ if (isPhoneGapWebView){
    videoEl.srcObject.getTracks().forEach(track => track.stop()) 
 }"><br> 
   
+  
+  
+  
 <input type=button value=orient onclick="{
     myOrient()
 }"><br>
@@ -65,32 +68,16 @@ if (isPhoneGapWebView){
        // portrait
       document.getElementById('inputVideo').width = 640
       document.getElementById('inputVideo').width = 480     
-      document.getElementById('overlay').style.top = -1287
+      document.getElementById('overlay').style.top = '-1287px'
 }"><br>
     
  <input type=button value=landscape onclick="{   
       // lanscape default working   
       document.getElementById('inputVideo').width = 480
       document.getElementById('inputVideo').width = 640 
-      document.getElementById('overlay').style.top = -487
+      document.getElementById('overlay').style.top = '-487px'
 }"><br><br>
       
- <input type=button value=user onclick="{
-    myCamera = 'user'
-     videoEl.srcObject.getTracks().forEach(track => track.stop()) 
-    //alert(myCamera)
-    run()
-}"><br> 
-  <input type=button value=environment onclick="{
-    myCamera = 'environment'
-    videoEl.srcObject.getTracks().forEach(track => track.stop()) 
-  // alert(myCamera)
-  run()                                              
-}"><br> 
-  
-
-  
-
   
   
 <video onplay="onPlay(this)" id="inputVideo" autoplay muted  width="640" height="480" style=" border: 1px solid #ddd;"></video><br>
