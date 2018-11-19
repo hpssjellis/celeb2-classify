@@ -64,7 +64,7 @@ if (isPhoneGapWebView){
 <input type="hidden" id="myInText" size="120" value="https://hpssjellis.github.io/celeb2-classify/myClassifierLinks.txt"> <br>
  
  <input type=text id="myClassText" style="font-size:25px;" value = "joe">     
-<input type=text id="myClassNumber" style="font-size:25px;" value = "0">    <br> <br> 
+<input type=text id="myClassNumber" style="font-size:25px;" value = "0">    <br> <br> <br> 
   
   
 <input type=button style="font-size:25px;" value=" Save Model " onclick="{
@@ -73,12 +73,16 @@ if (isPhoneGapWebView){
  
 <input type=button style="font-size:25px;" value=" Check Model" onclick="{
    myNewPredict(myFaceLandmarks) 
+}">
+ 
+ <input type=button style="font-size:25px;" value=" show data" onclick="{
+   alert(classifier.getNumClasses())
 }"><br> <br> 
   
   
 <div id="videoDiv" onclick="{
-     // console.log(myFaceLandmarks)                      
-      myNewTrain(myFaceLandmarks)
+     console.log(myFaceLandmarks)                      
+      myNewTrain(myFaceLandmarks)                        
 }">   
    <video onplay="onPlay(this)" id="inputVideo" autoplay muted  width="640" height="480" style=" border: 1px solid #ddd;"></video><br>
    <canvas id="overlay" width="640" height="480" style="position:relative; top:-487px; border: 1px solid #ddd;" ></canvas><br>
@@ -98,12 +102,19 @@ let stream
 let myCamera = 'user'  
 const videoEl = document.getElementById('inputVideo')  
 
-classifier = knnClassifier.create();                                     
-console.log('knn-classifier loaded') 
 let myFaceLandmarks    //from face detection
 let myGroups = []   // for storing classifier information
 let newArray = [] 
 let myIncomingClassifier = [] 
+
+
+
+
+classifier = knnClassifier.create();                                     
+console.log('knn-classifier loaded') 
+ 
+ 
+ 
 ////////////////////////// A few helper functions ///////////////////////////////////////////   
    
 function myOrient(){  // not using anymore
