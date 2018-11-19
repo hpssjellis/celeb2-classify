@@ -99,7 +99,7 @@ myOrient()
 
 ////////////////////////// Globals ///////////////////////////////////////////     
   
-  
+let stream  
 let myCamera = 'user'  
 const videoEl = document.getElementById('inputVideo')  
   
@@ -191,11 +191,11 @@ async function run() {
   
   if(window.orientation == 0){
       // portrait
-      const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: myCamera, width:480, height:640 }, audio: false})
+      stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: myCamera, width:480, height:640 }, audio: false})
   
   } else {
       // landscape
-      const stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: myCamera, width:640, height:480 }, audio: false})
+      stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: myCamera, width:640, height:480 }, audio: false})
   }
    
    
