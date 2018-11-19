@@ -217,10 +217,10 @@ async function run() {
    const img1 = tf.fromPixels(my32x32CanvasA);                                                                                            
    const myDetectMarks = await net.detectLandmarks(img1)                                                                                                                                                                                        
 */
-   for (let j=0;  j < myDetectMarks._faceLandmarks.length; j++ ){  
+   for (let j=0;  j < myDetectMarks.length; j++ ){  
       newArray[j] = []                                                                                        
-      newArray[j][0] = myDetectMarks._faceLandmarks[j].x                                                                
-      newArray[j][1] = myDetectMarks._faceLandmarks[j].y  
+      newArray[j][0] = myDetectMarks[j].x                                                                
+      newArray[j][1] = myDetectMarks[j].y  
    }                                                                                          
                                                                                                
    classifier.addExample(tf.tensor2d(newArray, shape=[68,2]), parseInt(document.getElementById('myClassNumber').value));                                                              
