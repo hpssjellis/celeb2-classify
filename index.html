@@ -40,7 +40,9 @@ if (isPhoneGapWebView){
   
 <input type=button style="font-size:25px;" value=" run " onclick="{
     myClassifierLoad()
-    window.open = cordova.InAppBrowser.open;
+    if (isPhoneGapWebView){
+         window.open = cordova.InAppBrowser.open;
+    }
     run()
 }">  
   
