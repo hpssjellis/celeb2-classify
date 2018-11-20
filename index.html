@@ -52,7 +52,7 @@ document.head.appendChild(script);
  
 
 <input type=button style="font-size:25px; background-color:lime; " value=" run " onclick="{
-    this.style.backgroundColor = 'gray'
+    this.style.backgroundColor = 'LightGray'
     myClassifierLoad()
     run()
     myClock = setInterval('myNewPredict(myFaceLandmarks)',myInterval)                                                               
@@ -78,7 +78,8 @@ document.head.appendChild(script);
    clearInterval(myClock)
 }"><br><br>
 
- <input type=button id="myFaster" style="font-size:25px;" value=" Faster " onclick="{
+ <input type=button id="myFaster" style="font-size:25px;" value=" Faster " onclick="{   
+  this.style.backgroundColor = 'LightGray'                                                                                 
   clearInterval(myClock)
   if (myInterval > 250  ) {myInterval = myInterval - 200}   
   document.getElementById('myInt').value = myInterval                                                                           
@@ -123,7 +124,8 @@ document.head.appendChild(script);
  <input type=button id="myClearButton" style="font-size:25px; width:60%; visibility:hidden; display:block" value = " Clear All " onClick="{
       classifier.clearAllClasses()
       clearInterval(myClock)
-      alert('You have to enter at least 2 faces for the app to work')
+      alert('You have to enter at least 2 names and numbers for the app to work')
+    document.getElementById('myFaster').style.backgroundColor = 'Lime' 
  }">    
 <input type=button id="mySaveButton" style="font-size:25px; visibility:hidden; display:block" value=" Save Model " onclick="{
    myClassifierSave()
@@ -137,6 +139,7 @@ document.head.appendChild(script);
    if (myOkToTrain){                      
       myNewTrain(myFaceLandmarks)
       clearInterval(myClock)
+      document.getElementById('myFaster').style.backgroundColor = 'Lime' 
       document.getElementById('myDiv03').innerHTML = 'Saving faces while the App is open only. Click faster or slower to restart the app'                      
    }                      
 }">   
