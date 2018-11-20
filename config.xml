@@ -2,8 +2,8 @@
 <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:cdv="http://cordova.apache.org/ns/1.0"
     id          = "com.rocksetta.knn_celebrity"
-    versionCode = "14"
-    version     = "2.0.14" >      <!-- Change this before each compile -->
+    versionCode = "16"
+    version     = "1.08.16" >      <!-- Change this before each compile -->
 
   <name>Party App: Celebrity Face Match</name>
   <description>
@@ -19,7 +19,8 @@
   <preference name="phonegap-version" value="cli-8.0.0" />  
 
  
-  <preference name="orientation" value="default" />
+<!--  <preference name="orientation" value="default" />  -->
+  <preference name="orientation" value="portrait" />
   <preference name="fullscreen" value="true" />
 
 
@@ -68,9 +69,10 @@
   <!--  <preference name="AndroidPersistentFileLocation" value="Internal" />  -->
     <preference name="permissions" value="none" />   
     <plugin name="cordova-plugin-whitelist" spec="~1" /> 
-    <plugin name="cordova-plugin-file" spec="~6" source="npm" /> 
-    
     <plugin name="cordova-plugin-inappbrowser" spec="~3.0.0" />     
+    
+ <!--   <plugin name="cordova-plugin-file" spec="~6" source="npm" />  -->
+    
   <!--    <plugin name="cordova-plugin-camera" source="npm" version="4.0.3" />-->
     
  
