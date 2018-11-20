@@ -71,7 +71,7 @@
     <plugin name="cordova-plugin-whitelist" spec="~1" /> 
     <plugin name="cordova-plugin-inappbrowser" spec="~3.0.0" />     
     
-    <plugin name="cordova-plugin-file" spec="~6" source="npm" />  
+  <!--   <plugin name="cordova-plugin-file" spec="~6" source="npm" />  -->
     
   <!--    <plugin name="cordova-plugin-camera" source="npm" version="4.0.3" />-->
     
