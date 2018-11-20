@@ -29,7 +29,8 @@ if (isPhoneGapWebView){
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-     window.open = cordova.InAppBrowser.open;
+    window.open = cordova.InAppBrowser.open; 
+    document.getElementById('mySaveButton').style.display = 'none'
 // alert('ready')
 } 
  
@@ -99,7 +100,8 @@ function onDeviceReady() {
  <input type=button style="font-size:25px;" value=" Train " onclick="{
     myOkToTrain = true
     document.getElementById('myClassText').style.visibility = 'visible'   
-    document.getElementById('myClassNumber').style.visibility = 'visible'                                                      
+    document.getElementById('myClassNumber').style.visibility = 'visible' 
+    document.getElementById('mySaveButton').style.visibility = 'visible'                                                        
 }">
  <input type=hidden id="myClassText" style="font-size:25px; display:none;" value = "joe" onFocus="{
      this.value = ''    // clear the value on entry                                                                                 
@@ -107,13 +109,10 @@ function onDeviceReady() {
 <input type=hidden id="myClassNumber" style="font-size:25px; display:none;" value = "0">    <br> <br> 
   
   
-<input type=button style="font-size:25px;" value=" Save Model " onclick="{
+<input type=button id="mySaveButton" style="font-size:25px; visibility:hidden; display:block" value=" Save Model " onclick="{
    myClassifierSave()
 }">  
- 
-<input type=button style="font-size:25px;" value=" Check Model" onclick="{
-   myNewPredict(myFaceLandmarks) 
-}"><br> <br> 
+
   
   
 <div id="videoDiv" onclick="{
