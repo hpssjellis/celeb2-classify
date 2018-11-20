@@ -166,7 +166,7 @@ document.head.appendChild(script);
 }">  
 
   
-<input type=button id="myDataButton" style="font-size:25px; visibility:hidden; display:inline" value=" Show Data " onclick="{
+<input type=button id="myDataButton" style="font-size:25px; visibility:hidden; display:inline" value=" Clear Present Face" onclick="{
    myShowData() 
 }">  
 
@@ -337,7 +337,13 @@ async function run() {
 //////////////////////////////////////////// start classifier stuff  ///////////////////////////////////////////////////
                    
 myShowData = async function() {
-   alert('data')
+    const x =  parseInt(document.getElementById('myClassNumber').value)
+    const myDataBlock = classifier.getClassExampleCount()[x]  
+    document.getElementById('myDiv02').innerHTML += '#: '+ x + ', label: '+ myGroups[x] + ', with: '+myDataBlock+ ' records<br>'
+ 
+    classifier.clearClass(x)
+    const myDataBlock = classifier.getClassExampleCount()[x]  
+    document.getElementById('myDiv02').innerHTML += '#: '+ x + ', label: '+ myGroups[x] + ', with: '+myDataBlock+ ' records<br>'
 }
                                                                                              
 myCheckGroups   = async function() {  
