@@ -38,6 +38,9 @@ document.head.appendChild(script);
  
     window.open = cordova.InAppBrowser.open; 
     document.getElementById('mySaveButton').style.display = 'none'   // can't as of yet save files with a mobile app
+    document.getElementById('myShowButton').style.display = 'none'   // can't as of yet save files with a mobile app
+    document.getElementById('myGoogleButton').style.display = 'none'   // can't as of yet save files with a mobile app
+    document.getElementById('myDataButton').style.display = 'none'   // can't as of yet save files with a mobile app
 // alert('ready')
 } 
  
@@ -141,8 +144,26 @@ document.head.appendChild(script);
       document.getElementById('myFaster').style.backgroundColor = 'Lime' 
       document.getElementById('myClassNumber').value = -1                                                                                                                                    
  }">    
+ 
+ 
 <input type=button id="mySaveButton" style="font-size:25px; visibility:hidden; display:block" value=" Save Model " onclick="{
    myClassifierSave()
+}">  
+ 
+  
+<input type=button id="myShowButton" style="font-size:25px; visibility:hidden; display:block" value=" Check Training " onclick="{
+  myCheckGroups()  
+}">  
+
+ 
+  
+<input type=button id="myGoogleButton" style="font-size:25px; visibility:hidden; display:block" value=" Show Info " onclick="{
+   myShowInfo() 
+}">  
+
+  
+<input type=button id="myDataButton" style="font-size:25px; visibility:hidden; display:block" value=" Show Info " onclick="{
+   myShowData() 
 }">  
 
   
@@ -310,7 +331,39 @@ async function run() {
   
   
 //////////////////////////////////////////// start classifier stuff  ///////////////////////////////////////////////////
- 
+                   
+myShowData = async function() {
+   alert('data')
+}
+                                                                                             
+myCheckGroups   = async function() {  
+   document.getElementById('myDiv01').innerHTML = ''  // clear it                                                                                          
+   for (let x=0;   x < myGroups.length; x++){
+                                                                                             
+      if (myGroups[x] == undefined) {
+            document.getElementById('myDiv01').innerHTML += '<font color=red>#: '+ x + ', label: </font><br>'                                                                                 
+          } else {                                                                                       
+         document.getElementById('myDiv01').innerHTML += '#: '+ x + ', label: '+ myGroups[x] + '<br>' 
+      }                                                                                       
+   } 
+ }                                                                                            
+                                                                                             
+                                                    
+myShowInfo = async function() {
+                                                                                             
+    // myIn = document.getElementById('myArray01').value.split('***')    // made it global
+   document.getElementById('myDiv01').innerHTML = '' // clear it  
+                                                                                             
+   for (myIteration = 0;  myIteration < myGroups.length; myIteration++){   
+                                                                                                   
+     // myIncomingImages[myIteration] = []    // make new part of 2D array                                                                         
+     // myIncomingImages[myIteration] = myIn[myIteration].split(',')    // [0] = groups,   [1] = labels,    [2] = Image URL                                                                                       
+      document.getElementById('myDiv01').innerHTML +=  `<a href='https://www.google.com/search?&tbm=isch&q=`+myGroups[myIteration]+`' target='_blank'>`+myIteration+`: `+myGroups[myIteration]+ `</a>,   `                                                                                   
+     // document.getElementById('myDiv-1').innerHTML += `<a href='${myGroups[myIteration]}'>Image Only</a><br>`
+                                                                                             
+    }                                                                                       
+}
+                               
  
  myNewTrain = async function(myDetectMarks){   
 
