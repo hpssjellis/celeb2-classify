@@ -98,12 +98,13 @@ function onDeviceReady() {
  
  <input type=button style="font-size:25px;" value=" Train " onclick="{
     myOkToTrain = true
-                                                                     
+    document.getElementById('myClassText').style.visibility = 'visible'   
+    document.getElementById('myClassNumber').style.visibility = 'visible'                                                      
 }">
- <input type=text id="myClassText" style="font-size:25px; display:none;" value = "joe" onFocus="{
+ <input type=hidden id="myClassText" style="font-size:25px; display:none;" value = "joe" onFocus="{
      this.value = ''    // clear the value on entry                                                                                 
  }">     
-<input type=text id="myClassNumber" style="font-size:25px; display:none;" value = "0">    <br> <br> 
+<input type=hidden id="myClassNumber" style="font-size:25px; display:none;" value = "0">    <br> <br> 
   
   
 <input type=button style="font-size:25px;" value=" Save Model " onclick="{
