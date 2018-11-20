@@ -276,7 +276,7 @@ async function run() {
  
  
  myNewTrain = async function(myDetectMarks){   
-  
+
    for (let j=0;  j < myDetectMarks.length; j++ ){  
       newArray[j] = []                                                                                        
       newArray[j][0] = myDetectMarks[j].x                                                                
@@ -294,7 +294,9 @@ async function run() {
 }
   
  
-  myNewPredict = async function(myDetectMarks){    
+  myNewPredict = async function(myDetectMarks){   
+   
+  if (classifier.getNumClasses() >= 1){ 
    for (let j=0;  j < myDetectMarks.length; j++ ){  
       newArray[j] = []                                                                                        
       newArray[j][0] = myDetectMarks[j].x                                                                
@@ -309,7 +311,8 @@ async function run() {
    document.getElementById('myDiv01').innerHTML =  `<input type=button onclick=window.open('https://www.google.com/search?&tbm=isch&q=`+myGroups[myFindMatch.classIndex]+`','_blank') value=`+myGroups[myFindMatch.classIndex]+ `><br>` + document.getElementById('myDiv01').innerHTML                                                                                                                                             
    document.getElementById('myDiv02').innerHTML =  `<input type=button onclick=window.open('https://www.google.com/search?&tbm=isch&q=`+myGroups[myFindMatch.classIndex]+`','_blank') value=`+myGroups[myFindMatch.classIndex]+ `><br>`                                                                                                                                              
 
-  }
+  }  // if classifier
+ }
  
  
  
