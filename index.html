@@ -195,7 +195,7 @@ async function onPlay() {
 async function run() {
  
  if (isPhoneGapWebView){
-      window.open = cordova.InAppBrowser.open;
+     // window.open = cordova.InAppBrowser.open;
  }
  
  
@@ -255,6 +255,8 @@ async function run() {
 
    const myFindMatch = await classifier.predictClass(tf.tensor2d(newArray, shape=[68,2]), 3);   // number of groups   
    console.log(myFindMatch)
+   document.getElementById('myClassText').value = myGroups[myFindMatch.classIndex]
+   document.getElementById('myClassNumber').value = myFindMatch.classIndex
   // document.getElementById('myDiv01').innerHTML =  'Nearest: <span style=color:blue; onclick={myLoadOneImage('+myFindMatch.classIndex+')}>'+myGroups[myFindMatch.classIndex]+ '</span><br>' + document.getElementById('myDiv01').innerHTML                                                                                        
    document.getElementById('myDiv01').innerHTML =  `<input type=button onclick=window.open('https://www.google.com/search?&tbm=isch&q=`+myGroups[myFindMatch.classIndex]+`','_blank') value=`+myGroups[myFindMatch.classIndex]+ `><br>` + document.getElementById('myDiv01').innerHTML                                                                                                                                             
    document.getElementById('myDiv02').innerHTML =  `<input type=button onclick=window.open('https://www.google.com/search?&tbm=isch&q=`+myGroups[myFindMatch.classIndex]+`','_blank') value=`+myGroups[myFindMatch.classIndex]+ `><br>`                                                                                                                                              
