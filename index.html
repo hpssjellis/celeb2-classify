@@ -136,6 +136,7 @@ document.head.appendChild(script);
  <input type=button id="myClearButton" style="font-size:25px; width:60%; visibility:hidden; display:none" value = " Clear All " onClick="{
       classifier.clearAllClasses()
       clearInterval(myClock)
+      myGroups.length = 0                                                                                                                                   
       document.getElementById('myDiv02').innerHTML = 'You have to enter at least 2 names and numbers for the app to work. Also click the image to record the face'
       document.getElementById('myFaster').style.backgroundColor = 'Lime' 
       document.getElementById('myClassNumber').value = -1                                                                                                                                    
