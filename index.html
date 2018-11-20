@@ -128,14 +128,14 @@ document.head.appendChild(script);
      clearInterval(myClock)
  }">     
 <input type=number id="myClassNumber" style="font-size:25px; width:10%; visibility:hidden;" value = "0" onchange="{
-    this.value =  myGroups[parseInt(document.getElementById('myClassNumber').value)]                                                                                                             
+    document.getElementById('myClassNumber').value =  myGroups[parseInt(document.getElementById('myClassNumber').value)]                                                                                                             
                                                                                                                   
   }">    <br> <br> 
   
  <input type=button id="myClearButton" style="font-size:25px; width:60%; visibility:hidden; display:none" value = " Clear All " onClick="{
       classifier.clearAllClasses()
       clearInterval(myClock)
-      document.getElementById('myDiv02').value= 'You have to enter at least 2 names and numbers for the app to work. Also click the image to record the face'
+      document.getElementById('myDiv02').innerHTML = 'You have to enter at least 2 names and numbers for the app to work. Also click the image to record the face'
       document.getElementById('myFaster').style.backgroundColor = 'Lime' 
       document.getElementById('myClassNumber').value = -1                                                                                                                                    
  }">    
