@@ -111,23 +111,29 @@ document.head.appendChild(script);
     document.getElementById('myClassText').style.visibility = 'visible'   
     document.getElementById('myClassNumber').style.visibility = 'visible' 
     document.getElementById('mySaveButton').style.visibility = 'visible'     
-    document.getElementById('myClearButton').style.visibility = 'visible'                                                       
+    document.getElementById('myClearButton').style.visibility = 'visible'  
+    if (myDebug == false){
+        document.getElementById('myClearButton').click()                                                               
+    }                                                                 
+                                                                     
 }">
 
 
  
  <input type=text id="myClassText" style="font-size:25px; width:60%; visibility:hidden;" value = "joe" onFocus="{
      this.value = ''    // clear the value on entry  
+     document.getElementById('myClassNumber').value = parseInt(document.getElementById('myClassNumber').value) + 1                                                                                                           
      classifier.clearClass(parseInt(document.getElementById('myClassNumber').value)) 
      clearInterval(myClock)
  }">     
-<input type=text id="myClassNumber" style="font-size:25px; width:10%; visibility:hidden;" value = "0">    <br> <br> 
+<input type=number id="myClassNumber" style="font-size:25px; width:10%; visibility:hidden;" value = "0">    <br> <br> 
   
  <input type=button id="myClearButton" style="font-size:25px; width:60%; visibility:hidden; display:block" value = " Clear All " onClick="{
       classifier.clearAllClasses()
       clearInterval(myClock)
       alert('You have to enter at least 2 names and numbers for the app to work')
-    document.getElementById('myFaster').style.backgroundColor = 'Lime' 
+      document.getElementById('myFaster').style.backgroundColor = 'Lime' 
+      document.getElementById('myClassNumber').value = -1                                                                                                                                    
  }">    
 <input type=button id="mySaveButton" style="font-size:25px; visibility:hidden; display:block" value=" Save Model " onclick="{
    myClassifierSave()
@@ -159,6 +165,9 @@ document.head.appendChild(script);
 
 ////////////////////////// Globals ///////////////////////////////////////////     
   
+ 
+let myDebug = false 
+ 
 let stream  
 let myCamera = 'user'  
 const videoEl = document.getElementById('inputVideo')  
