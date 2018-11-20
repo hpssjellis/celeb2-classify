@@ -159,7 +159,7 @@ document.head.appendChild(script);
 
  
   
-<input type=button id="myGoogleButton" style="font-size:25px; visibility:hidden; display:inline" value=" Show Info " onclick="{
+<input type=button id="myGoogleButton" style="font-size:25px; visibility:hidden; display:inline" value=" Show Google " onclick="{
    myShowInfo() 
 }">  
 
@@ -341,11 +341,11 @@ myShowData = async function() {
 myCheckGroups   = async function() {  
    document.getElementById('myDiv01').innerHTML = ''  // clear it                                                                                          
    for (let x=0;   x < myGroups.length; x++){
-                                                                                             
+      const myDataBlock = classifier.getClassExampleCount(x)                                                                                      
       if (myGroups[x] == undefined) {
             document.getElementById('myDiv01').innerHTML += '<font color=red>#: '+ x + ', label: </font><br>'                                                                                 
           } else {                                                                                       
-         document.getElementById('myDiv01').innerHTML += '#: '+ x + ', label: '+ myGroups[x] + '<br>' 
+         document.getElementById('myDiv01').innerHTML += '#: '+ x + ', label: '+ myGroups[x] + ', with: '+myDataBlock+ ' records<br>' 
       }                                                                                       
    } 
  }                                                                                            
@@ -360,7 +360,7 @@ myShowInfo = async function() {
                                                                                                    
      // myIncomingImages[myIteration] = []    // make new part of 2D array                                                                         
      // myIncomingImages[myIteration] = myIn[myIteration].split(',')    // [0] = groups,   [1] = labels,    [2] = Image URL                                                                                       
-      document.getElementById('myDiv01').innerHTML +=  `<a href='https://www.google.com/search?&tbm=isch&q=`+myGroups[myIteration]+`' target='_blank'>`+myIteration+`: `+myGroups[myIteration]+ `</a>,   `                                                                                   
+      document.getElementById('myDiv01').innerHTML +=  `<a href='https://www.google.com/search?&tbm=isch&q=`+myGroups[myIteration]+`' target='_blank'>`+myIteration+`: `+myGroups[myIteration]+ `</a>,  <br> `                                                                                   
      // document.getElementById('myDiv-1').innerHTML += `<a href='${myGroups[myIteration]}'>Image Only</a><br>`
                                                                                              
     }                                                                                       
