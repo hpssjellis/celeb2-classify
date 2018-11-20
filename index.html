@@ -46,7 +46,11 @@ function onDeviceReady() {
 <div id="myDiv03">...</div><br>  
  
 <input type=button style="font-size:25px;" value=" test " onclick="{
-   cordova.InAppBrowser.open('https://www.google.ca')
+   cordova.InAppBrowser.open('https://www.google.ca','_self')
+}">  
+   
+<input type=button style="font-size:25px;" value=" test " onclick="{
+   cordova.InAppBrowser.open('https://www.google.ca','_blank')
 }">  
   
 <input type=button style="font-size:25px;" value=" run " onclick="{
