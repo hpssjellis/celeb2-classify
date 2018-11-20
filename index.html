@@ -343,7 +343,7 @@ myShowData = async function() {
 myCheckGroups   = async function() {  
    document.getElementById('myDiv01').innerHTML = ''  // clear it                                                                                          
    for (let x=0;   x < myGroups.length; x++){
-      const myDataBlock = classifier.getClassExampleCount(x)                                                                                      
+      const myDataBlock = classifier.getClassExampleCount()[x]                                                                                      
       if (myGroups[x] == undefined) {
             document.getElementById('myDiv01').innerHTML += '<font color=red>#: '+ x + ', label: </font><br>'                                                                                 
           } else {                                                                                       
