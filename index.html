@@ -43,7 +43,7 @@ function onDeviceReady() {
   
 
  
-<div id="myDiv03">...</div><br>  
+<div id="myDiv03"></div><br>  
  
 
 <input type=button style="font-size:25px;" value=" run " onclick="{
@@ -100,14 +100,21 @@ function onDeviceReady() {
     myOkToTrain = true
     document.getElementById('myClassText').style.visibility = 'visible'   
     document.getElementById('myClassNumber').style.visibility = 'visible' 
-    document.getElementById('mySaveButton').style.visibility = 'visible'                                                        
+    document.getElementById('mySaveButton').style.visibility = 'visible'     
+    document.getElementById('myClearButton').style.visibility = 'visible'                                                       
 }">
+
+
+ 
  <input type=text id="myClassText" style="font-size:25px; width:60%; visibility:hidden;" value = "joe" onFocus="{
      this.value = ''    // clear the value on entry                                                                                 
  }">     
 <input type=text id="myClassNumber" style="font-size:25px; width:10%; visibility:hidden;" value = "0">    <br> <br> 
   
-  
+ <input type=button id="myClearButton" style="font-size:25px; width:60%; visibility:hidden; display:block" value = " Clear All " onClick="{
+      classifier.clearAllClasses() 
+      alert('You have to enter at least 2 faces for the app to work')
+ }">    
 <input type=button id="mySaveButton" style="font-size:25px; visibility:hidden; display:block" value=" Save Model " onclick="{
    myClassifierSave()
 }">  
@@ -231,9 +238,9 @@ async function onPlay() {
        drawLandmarks(videoEl, document.getElementById('overlay'), [result], true)
        
       // Just printing the first of 68 face landmark x and y 
-      document.getElementById('myDiv03').innerHTML = 'First of 68 face landmarks, x: '+ 
-        Math.round(result._unshiftedLandmarks._positions[0]._x) + ', y: '+ 
-        Math.round(result._unshiftedLandmarks._positions[0]._y) +'<br>' 
+    //  document.getElementById('myDiv03').innerHTML = 'First of 68 face landmarks, x: '+ 
+     //   Math.round(result._unshiftedLandmarks._positions[0]._x) + ', y: '+ 
+     //   Math.round(result._unshiftedLandmarks._positions[0]._y) +'<br>' 
         
    }
 
