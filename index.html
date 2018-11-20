@@ -119,6 +119,8 @@ function onDeviceReady() {
    // console.log(myFaceLandmarks) 
    if (myOkToTrain){                      
       myNewTrain(myFaceLandmarks)
+      clearInterval(myClock)
+      document.getElementById('myDiv03').innerHTML = 'Saving faces while the App is open only. Click faster or slower to restart the app'                      
    }                      
 }">   
    <video onplay="onPlay(this)" id="inputVideo" autoplay muted  width="640" height="480" style=" border: 1px solid #ddd;"></video><br>
