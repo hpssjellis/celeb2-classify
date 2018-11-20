@@ -69,6 +69,7 @@ function onDeviceReady() {
   
 <input type=button style="font-size:25px;" value=stop onclick="{
    videoEl.srcObject.getTracks().forEach(track => track.stop()) 
+   clearInterval(myClock)
 }">
 
  <input type=button style="font-size:25px;" value=" Faster " onclick="{
