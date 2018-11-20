@@ -70,7 +70,7 @@ function onDeviceReady() {
 <input type=button style="font-size:25px;" value=stop onclick="{
    videoEl.srcObject.getTracks().forEach(track => track.stop()) 
    clearInterval(myClock)
-}">
+}"><br>
 
  <input type=button style="font-size:25px;" value=" Faster " onclick="{
   clearInterval(myClock)
@@ -87,7 +87,7 @@ function onDeviceReady() {
 }"> 
 <input type=number id="myInt" style="font-size:25px; width:100px;" readonly > 
  
-<input type=button style="font-size:25px;" value=" No" onclick="{
+<input type=button style="font-size:25px;" value=" No " onclick="{
     clearInterval(myClock)
 }">  
  <br> <br>
@@ -96,8 +96,14 @@ function onDeviceReady() {
 <input type="hidden" id="myInFile" size="120" value="https://hpssjellis.github.io/celeb2-classify/myClassifierModel01.json"> <br>
 <input type="hidden" id="myInText" size="120" value="https://hpssjellis.github.io/celeb2-classify/myClassifierLinks.txt"> <br>
  
- <input type=text id="myClassText" style="font-size:25px;" value = "joe">     
-<input type=text id="myClassNumber" style="font-size:25px;" value = "0">    <br> <br> 
+ <input type=button style="font-size:25px;" value=" Train " onclick="{
+    myOkToTrain = true
+                                                                     
+}">
+ <input type=text id="myClassText" style="font-size:25px; display:none;" value = "joe" onFocus="{
+     this.value = ''    // clear the value on entry                                                                                 
+ }">     
+<input type=text id="myClassNumber" style="font-size:25px; display:none;" value = "0">    <br> <br> 
   
   
 <input type=button style="font-size:25px;" value=" Save Model " onclick="{
@@ -110,8 +116,10 @@ function onDeviceReady() {
   
   
 <div id="videoDiv" onclick="{
-     // console.log(myFaceLandmarks)                      
+   // console.log(myFaceLandmarks) 
+   if (myOkToTrain){                      
       myNewTrain(myFaceLandmarks)
+   }                      
 }">   
    <video onplay="onPlay(this)" id="inputVideo" autoplay muted  width="640" height="480" style=" border: 1px solid #ddd;"></video><br>
    <canvas id="overlay" width="640" height="480" style="position:relative; top:-487px; border: 1px solid #ddd;" ></canvas><br>
@@ -141,7 +149,7 @@ let myIncomingClassifier = []
 
 let myClock
 let myInterval = 2000   // starting prediction time in ms
-
+let myOkToTrain = false
 ////////////////////////// A few helper functions ///////////////////////////////////////////   
    
 function myOrient(){  // not using anymore
@@ -293,7 +301,7 @@ async function run() {
 
    const myFindMatch = await classifier.predictClass(tf.tensor2d(newArray, shape=[68,2]), 3);   // number of groups   
    console.log(myFindMatch)
-   document.getElementById('myClassText').value = myGroups[myFindMatch.classIndex]
+   document.getElementById('myClassText').value = 'Not '+myGroups[myFindMatch.classIndex] + ' if you click the image!'
    document.getElementById('myClassNumber').value = myFindMatch.classIndex
   // document.getElementById('myDiv01').innerHTML =  'Nearest: <span style=color:blue; onclick={myLoadOneImage('+myFindMatch.classIndex+')}>'+myGroups[myFindMatch.classIndex]+ '</span><br>' + document.getElementById('myDiv01').innerHTML                                                                                        
    document.getElementById('myDiv01').innerHTML =  `<input type=button onclick=window.open('https://www.google.com/search?&tbm=isch&q=`+myGroups[myFindMatch.classIndex]+`','_blank') value=`+myGroups[myFindMatch.classIndex]+ `><br>` + document.getElementById('myDiv01').innerHTML                                                                                                                                             
