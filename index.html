@@ -193,6 +193,12 @@ async function onPlay() {
 }
 
 async function run() {
+ 
+ if (isPhoneGapWebView){
+      window.open = cordova.InAppBrowser.open;
+ }
+ 
+ 
   // myOrient()
    await faceapi.loadTinyFaceDetectorModel('https://hpssjellis.github.io/face-api.js-for-beginners/')
    await faceapi.loadFaceLandmarkTinyModel('https://hpssjellis.github.io/face-api.js-for-beginners/')
@@ -251,7 +257,9 @@ async function run() {
    console.log(myFindMatch)
   // document.getElementById('myDiv01').innerHTML =  'Nearest: <span style=color:blue; onclick={myLoadOneImage('+myFindMatch.classIndex+')}>'+myGroups[myFindMatch.classIndex]+ '</span><br>' + document.getElementById('myDiv01').innerHTML                                                                                        
    document.getElementById('myDiv01').innerHTML =  `<input type=button onclick=window.open('https://www.google.com/search?&tbm=isch&q=`+myGroups[myFindMatch.classIndex]+`','_self') value=`+myGroups[myFindMatch.classIndex]+ `><br>` + document.getElementById('myDiv01').innerHTML                                                                                                                                             
-}
+   document.getElementById('myDiv02').innerHTML =  `<input type=button onclick=window.open('https://www.google.com/search?&tbm=isch&q=`+myGroups[myFindMatch.classIndex]+`','_self') value=`+myGroups[myFindMatch.classIndex]+ `><br>`                                                                                                                                              
+
+  }
  
  
  
