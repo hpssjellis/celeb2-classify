@@ -124,10 +124,13 @@ document.head.appendChild(script);
  <input type=text id="myClassText" style="font-size:25px; width:60%; visibility:hidden;" value = "joe" onFocus="{
      this.value = ''    // clear the value on entry  
      document.getElementById('myClassNumber').value = parseInt(document.getElementById('myClassNumber').value) + 1                                                                                                           
-     classifier.clearClass(parseInt(document.getElementById('myClassNumber').value)) 
+   //  classifier.clearClass(parseInt(document.getElementById('myClassNumber').value)) 
      clearInterval(myClock)
  }">     
-<input type=number id="myClassNumber" style="font-size:25px; width:10%; visibility:hidden;" value = "0">    <br> <br> 
+<input type=number id="myClassNumber" style="font-size:25px; width:10%; visibility:hidden;" value = "0" onchange="{
+    this.value =  myGroups[parseInt(document.getElementById('myClassNumber').value)]                                                                                                             
+                                                                                                                  
+  }">    <br> <br> 
   
  <input type=button id="myClearButton" style="font-size:25px; width:60%; visibility:hidden; display:none" value = " Clear All " onClick="{
       classifier.clearAllClasses()
