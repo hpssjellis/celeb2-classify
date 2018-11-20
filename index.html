@@ -2,7 +2,7 @@
 <html>
 <head>
  
-<!-- <script type="text/javascript" src="cordova.js"></script>  -->
+<script type="text/javascript" src="cordova.js"></script> 
 <script src="face-api.js"></script> 
 <script src="tfjs13-1.js"></script> 
 <script src="knn-classifier0-2-2.js"></script> 
@@ -27,15 +27,15 @@ if (isPhoneGapWebView){
   
 
 document.addEventListener("deviceready", onDeviceReady, false);
-
+/*
 function onDeviceReady() {
  var script = document.createElement('script');
 script.src = 'cordova.js';
 document.head.appendChild(script);
- 
+ */
  
     window.open = cordova.InAppBrowser.open; 
-    document.getElementById('mySaveButton').style.display = 'none'
+    document.getElementById('mySaveButton').style.display = 'none'   // can't as of yet save files with a mobile app
 // alert('ready')
 } 
  
