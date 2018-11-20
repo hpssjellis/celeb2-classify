@@ -118,7 +118,9 @@ document.head.appendChild(script);
     document.getElementById('myShowButton').style.visibility = 'visible'  
     document.getElementById('myGoogleButton').style.visibility = 'visible'  
     document.getElementById('myDataButton').style.visibility = 'visible'  
-    if (myDebug == false){
+    if (myDebug){    
+        document.getElementById('myClearButton').style.visibility = 'visible'                                                              
+    } else {                                                             
         document.getElementById('myClearButton').click()                                                               
     }                                                                 
                                                                      
