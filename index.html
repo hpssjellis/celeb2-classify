@@ -43,7 +43,6 @@ function onDeviceReady() {
   
 
  
-<div id="myDiv02">...</div><br>  
 <div id="myDiv03">...</div><br>  
  
 
@@ -71,7 +70,7 @@ function onDeviceReady() {
 <input type=button style="font-size:25px;" value=stop onclick="{
    videoEl.srcObject.getTracks().forEach(track => track.stop()) 
    clearInterval(myClock)
-}"><br>
+}"><br><br>
 
  <input type=button style="font-size:25px;" value=" Faster " onclick="{
   clearInterval(myClock)
@@ -114,6 +113,7 @@ function onDeviceReady() {
 }">  
 
   
+<div id="myDiv02">...</div><br>  
   
 <div id="videoDiv" onclick="{
    // console.log(myFaceLandmarks) 
