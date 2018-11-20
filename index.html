@@ -49,6 +49,7 @@ function onDeviceReady() {
 <input type=button style="font-size:25px;" value=" run " onclick="{
     myClassifierLoad()
     run()
+    myClock = setInterval('myNewPredict(myFaceLandmarks)',myInterval)
 }">  
  
  
@@ -71,16 +72,18 @@ function onDeviceReady() {
 
  <input type=button style="font-size:25px;" value=" Faster " onclick="{
   clearInterval(myClock)
-  if (myInterval > 250  ) {myInterval = myInterval - 200}                                                                  
+  if (myInterval > 250  ) {myInterval = myInterval - 200}   
+  document.getElemntById('myInt').value = myInterval                                                                           
   myClock = setInterval('myNewPredict(myFaceLandmarks)',myInterval)                                                                    
 }"> 
 
  <input type=button style="font-size:25px;" value=" Slower " onclick="{
   clearInterval(myClock)
-  if (myInterval < 6000  ) {myInterval = myInterval + 200}                                                                  
+  if (myInterval < 6000  ) {myInterval = myInterval + 200} 
+  document.getElemntById('myInt').value = myInterval                                                                    
   myClock = setInterval('myNewPredict(myFaceLandmarks)',myInterval)  
 }"> 
- 
+<input type=number id="myInt" readonly size = 8> 
  
  <br> <br>
  
