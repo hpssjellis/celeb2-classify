@@ -53,7 +53,7 @@ document.head.appendChild(script);
 <div id="myDiv03"></div><br>  
  
 
-<input type=button style="font-size:25px; background-color:lime; " value=" run " onclick="{
+<input type=button style="font-size:25px; background-color:lime; " value=" Start " onclick="{
     this.style.backgroundColor = 'LightGray'
     myClassifierLoad()
     run()
@@ -94,12 +94,13 @@ document.head.appendChild(script);
   document.getElementById('myInt').value = myInterval                                                                    
   myClock = setInterval('myNewPredict(myFaceLandmarks)',myInterval)  
 }"> 
-<input type=number id="myInt" style="font-size:25px; width:100px;" readonly > 
- 
-<input type=button style="font-size:25px;" value=" No " onclick="{
+ <input type=button style="font-size:25px;" value=" Pause " onclick="{
     clearInterval(myClock)
     document.getElementById('myFaster').style.backgroundColor = 'Lime'                                                            
 }">  
+<input type=number id="myInt" style="font-size:25px; width:100px;" readonly > ms
+ 
+
 
  
  
