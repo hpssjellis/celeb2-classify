@@ -137,6 +137,13 @@ document.head.appendChild(script);
  }">     
 <input type=number id="myClassNumber" style="font-size:25px; width:10%; visibility:hidden;" value = "0" onChange="{
     document.getElementById('myClassText').value =  myGroups[parseInt(document.getElementById('myClassNumber').value)]                                                                                                             
+    
+    const x =  parseInt(document.getElementById('myClassNumber').value)
+    const myDataBlock = classifier.getClassExampleCount()[x]  
+    document.getElementById('myDiv02').innerHTML = '#: '+ x + ', label: '+ myGroups[x] + ', with: '+myDataBlock+ ' records<br>'                                                                                                               
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
                                                                                                                   
   }">    <br> <br> 
   
@@ -339,7 +346,7 @@ async function run() {
 myShowData = async function() {  // actually clear one record
     const x =  parseInt(document.getElementById('myClassNumber').value)
     const myDataBlock = classifier.getClassExampleCount()[x]  
-    document.getElementById('myDiv02').innerHTML += '#: '+ x + ', label: '+ myGroups[x] + ', with: '+myDataBlock+ ' records<br>'
+    document.getElementById('myDiv02').innerHTML = '#: '+ x + ', label: '+ myGroups[x] + ', with: '+myDataBlock+ ' records<br>'
  
     classifier.clearClass(x)
     const myDataBlock2 = classifier.getClassExampleCount()[x]  
