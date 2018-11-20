@@ -336,14 +336,14 @@ async function run() {
   
 //////////////////////////////////////////// start classifier stuff  ///////////////////////////////////////////////////
                    
-myShowData = async function() {
+myShowData = async function() {  // actually clear one record
     const x =  parseInt(document.getElementById('myClassNumber').value)
     const myDataBlock = classifier.getClassExampleCount()[x]  
     document.getElementById('myDiv02').innerHTML += '#: '+ x + ', label: '+ myGroups[x] + ', with: '+myDataBlock+ ' records<br>'
  
     classifier.clearClass(x)
-    const myDataBlock = classifier.getClassExampleCount()[x]  
-    document.getElementById('myDiv02').innerHTML += '#: '+ x + ', label: '+ myGroups[x] + ', with: '+myDataBlock+ ' records<br>'
+    const myDataBlock2 = classifier.getClassExampleCount()[x]  
+    document.getElementById('myDiv02').innerHTML += '#: '+ x + ', label: '+ myGroups[x] + ', with: '+myDataBlock2+ ' records<br>'
 }
                                                                                              
 myCheckGroups   = async function() {  
