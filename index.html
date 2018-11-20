@@ -30,7 +30,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
      window.open = cordova.InAppBrowser.open;
- alert('ready')
+// alert('ready')
 } 
  
  
@@ -45,14 +45,7 @@ function onDeviceReady() {
 <div id="myDiv02">...</div><br>  
 <div id="myDiv03">...</div><br>  
  
-<input type=button style="font-size:25px;" value=" test " onclick="{
-   cordova.InAppBrowser.open('https://www.google.ca','_self')
-}">  
-   
-<input type=button style="font-size:25px;" value=" test " onclick="{
-   cordova.InAppBrowser.open('https://www.google.ca','_blank')
-}">  
-  
+
 <input type=button style="font-size:25px;" value=" run " onclick="{
     myClassifierLoad()
     run()
@@ -273,7 +266,7 @@ async function run() {
    document.getElementById('myClassText').value = myGroups[myFindMatch.classIndex]
    document.getElementById('myClassNumber').value = myFindMatch.classIndex
   // document.getElementById('myDiv01').innerHTML =  'Nearest: <span style=color:blue; onclick={myLoadOneImage('+myFindMatch.classIndex+')}>'+myGroups[myFindMatch.classIndex]+ '</span><br>' + document.getElementById('myDiv01').innerHTML                                                                                        
-   document.getElementById('myDiv01').innerHTML =  `<input type=button onclick=window.open('https://www.google.com/search?&tbm=isch&q=`+myGroups[myFindMatch.classIndex]+`','_self') value=`+myGroups[myFindMatch.classIndex]+ `><br>` + document.getElementById('myDiv01').innerHTML                                                                                                                                             
+   document.getElementById('myDiv01').innerHTML =  `<input type=button onclick=window.open('https://www.google.com/search?&tbm=isch&q=`+myGroups[myFindMatch.classIndex]+`','_blank') value=`+myGroups[myFindMatch.classIndex]+ `><br>` + document.getElementById('myDiv01').innerHTML                                                                                                                                             
    document.getElementById('myDiv02').innerHTML =  `<input type=button onclick=window.open('https://www.google.com/search?&tbm=isch&q=`+myGroups[myFindMatch.classIndex]+`','_blank') value=`+myGroups[myFindMatch.classIndex]+ `><br>`                                                                                                                                              
 
   }
@@ -435,9 +428,9 @@ myClassifierLoad  = async function(){
 
 </script>
  
- 
-   <h3 align=center>face-api.js by <a href="https://github.com/justadudewhohacks/face-api.js">@justadudewhohack</a> 
-    simplified for beginners by <a href="https://www.rocksetta.com/tensorflowjs/">@rocksetta</a></h3>
-  Preset for landscape viewing. The <a href="https://github.com/hpssjellis/face-api.js-for-beginners">github is here</a><br> 
+ Use at your own risk: Android App by Jeremy Ellis. <br>
+ Deep Learning interface, face-api.js by <a href="https://github.com/justadudewhohacks/face-api.js">@justadudewhohack</a> 
+    simplified for beginners by <a href="https://www.rocksetta.com/tensorflowjs/">@rocksetta</a>
+  Simplified github  <a href="https://github.com/hpssjellis/face-api.js-for-beginners">here</a><br> 
 </body>
 </html>
