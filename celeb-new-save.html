@@ -142,6 +142,9 @@ Analyse every <input type=number id="myInterval"  value="500" size=5> millisecon
  <input type=button value="Google Search" onclick="{
    myShowInfo()                                              
 }"> 
+  <input type=button value="Google Search and open" onclick="{
+   myShowInfo2()                                              
+}"> 
  
  
  <br>
@@ -296,7 +299,20 @@ myShowInfo = async function() {
                                                                                              
     }                                                                                       
 }
-                                                                                                
+myShowInfo2 = async function() {
+                                                                                             
+     myIn = document.getElementById('myArray01').value.split('***')    // made it global
+   document.getElementById('myDivLoss').innerHTML = '' // clear it  
+                                                                                             
+   for (myIteration = 0;  myIteration < myIn.length; myIteration++){   
+                                                                                                   
+      myIncomingImages[myIteration] = []    // make new part of 2D array                                                                         
+      myIncomingImages[myIteration] = myIn[myIteration].split(',')    // [0] = groups,   [1] = labels,    [2] = Image URL                                                                                       
+      document.getElementById('myDiv123').innerHTML +=  `<a href='https://www.google.com/search?&tbm=isch&q=`+myIncomingImages[myIteration][1]+`' target='_blank'>`+myIteration+`: `+myIncomingImages[myIteration][1]+ `</a>,   `                                                                                   
+      document.getElementById('myDiv123').innerHTML += `<a href='${myIncomingImages[myIteration][2]}'>Image Only</a><br>`
+      window.open(myIncomingImages[myIteration][2], '_blank')                                                                                       
+    }                                                                                       
+}                                                                                                
                                                                                              
                                                                                              
 myLoadManyImages = async function() {
