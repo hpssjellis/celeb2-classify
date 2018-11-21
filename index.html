@@ -38,9 +38,11 @@ document.head.appendChild(script);
  
     window.open = cordova.InAppBrowser.open; 
     document.getElementById('mySaveButton').style.display = 'none'   // can't as of yet save files with a mobile app
-    document.getElementById('myShowButton').style.display = 'none'   // can't as of yet save files with a mobile app
-    document.getElementById('myGoogleButton').style.display = 'none'   // can't as of yet save files with a mobile app
-    document.getElementById('myDataButton').style.display = 'none'   // can't as of yet save files with a mobile app
+    document.getElementById('myShowButton').style.display = 'none'  
+    document.getElementById('myGoogleButton').style.display = 'none'  
+    document.getElementById('myDataButton').style.display = 'none'   
+    document.getElementById('myClearButton').style.display = 'none'   
+    document.getElementById('myClear2Button').style.display = 'none'   
 // alert('ready')
 } 
  
@@ -119,7 +121,8 @@ document.head.appendChild(script);
     document.getElementById('myGoogleButton').style.visibility = 'visible'  
     document.getElementById('myDataButton').style.visibility = 'visible'  
     if (myDebug){    
-        document.getElementById('myClearButton').style.visibility = 'visible'                                                              
+        document.getElementById('myClearButton').style.visibility = 'visible'   
+        document.getElementById('myClear2Button').style.visibility = 'visible'                                                             
     } else {                                                             
         document.getElementById('myClearButton').click()                                                               
     }                                                                 
@@ -151,6 +154,14 @@ document.head.appendChild(script);
       classifier.clearAllClasses()
       clearInterval(myClock)
       myGroups.length = 0                                                                                                                                   
+      document.getElementById('myDiv02').innerHTML = 'You have to enter at least 2 names and numbers for the app to work. Also click the image to record the face'
+      document.getElementById('myFaster').style.backgroundColor = 'Lime' 
+      document.getElementById('myClassNumber').value = -1                                                                                                                                    
+ }">    
+  <input type=button id="myClear2Button" style="font-size:25px; width:60%; visibility:hidden; display:none" value = " Clear Records " onClick="{
+      classifier.clearAllClasses()
+      clearInterval(myClock)
+      //myGroups.length = 0                                                                                                                                   
       document.getElementById('myDiv02').innerHTML = 'You have to enter at least 2 names and numbers for the app to work. Also click the image to record the face'
       document.getElementById('myFaster').style.backgroundColor = 'Lime' 
       document.getElementById('myClassNumber').value = -1                                                                                                                                    
