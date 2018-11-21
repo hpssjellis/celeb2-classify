@@ -315,9 +315,10 @@ myShowInfo2 = async function() {
                                                                                              
                                                                                                
    for (myIteration2 = 0;  myIteration2 < myIn.length; myIteration2++){                                                                                                
-     (async function() {   
+     (async function(myIteration2) {  
+         console.log(myIteration2)                                                                                     
          window.open(myIncomingImages[myIteration2][2], '_blank');                                                                                                                                                                           
-     }  )()                                                                                               
+     }  )(myIteration2)                                                                                               
   }
                                                                                              
 }                                                                                                
