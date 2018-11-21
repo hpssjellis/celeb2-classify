@@ -150,7 +150,7 @@ document.head.appendChild(script);
                                                                                                                   
   }">    <br> <br> 
   
- <input type=button id="myClearButton" style="font-size:25px; width:60%; visibility:hidden; display:none" value = " Clear All " onClick="{
+ <input type=button id="myClearButton" style="font-size:25px; width:60%; visibility:hidden; display:inline" value = " Clear All " onClick="{
       classifier.clearAllClasses()
       clearInterval(myClock)
       myGroups.length = 0                                                                                                                                   
@@ -158,7 +158,7 @@ document.head.appendChild(script);
       document.getElementById('myFaster').style.backgroundColor = 'Lime' 
       document.getElementById('myClassNumber').value = -1                                                                                                                                    
  }">    
-  <input type=button id="myClear2Button" style="font-size:25px; width:60%; visibility:hidden; display:none" value = " Clear Records " onClick="{
+  <input type=button id="myClear2Button" style="font-size:25px; width:60%; visibility:hidden; display:inline" value = " Clear Records " onClick="{
       classifier.clearAllClasses()
       clearInterval(myClock)
       //myGroups.length = 0                                                                                                                                   
