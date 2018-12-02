@@ -235,8 +235,14 @@ let myClock
 let myInterval = 2000   // starting prediction time in ms
 let myOkToTrain = false
 ////////////////////////// A few helper functions ///////////////////////////////////////////   
+
+
+
 function myClearDiv(){  
-  document.getElementById('myDiv02').innerHTML = 'wow'
+  document.getElementById('myDiv01').innerHTML = `
+  <input type=button value='Clear Matches' onclick='{
+     myClearDiv()                                               
+ }'>`
 }  
   
 function myOrient(){  // not using anymore
