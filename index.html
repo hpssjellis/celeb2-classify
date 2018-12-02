@@ -189,12 +189,7 @@ document.head.appendChild(script);
 }">  
 
   
-<div id="myDiv02">
- <input type=button value="Clear Matches" onclick="{
-   alert()                                                  
- }">
- 
- </div><br>  
+<div id="myDiv02">...</div><br>  
   
 <div id="videoDiv" onclick="{
    // console.log(myFaceLandmarks) 
@@ -210,7 +205,9 @@ document.head.appendChild(script);
 </div>
 
  
-<div id="myDiv01">...</div><br>  
+<div id="myDiv01"> <input type=button value="Clear Matches" onclick="{
+   myClearDiv()                                               
+ }"></div><br>  
  
 </body>
 
@@ -238,7 +235,10 @@ let myClock
 let myInterval = 2000   // starting prediction time in ms
 let myOkToTrain = false
 ////////////////////////// A few helper functions ///////////////////////////////////////////   
-   
+function myClearDiv(){  
+  document.getElementById('myDiv02').innerHTML = 'wow'
+}  
+  
 function myOrient(){  // not using anymore
    if(window.orientation == 0){
        // portrait
