@@ -572,14 +572,14 @@ myClassifierLoad  = async function(){
    
     if (isPhoneGapWebView){
       
-      const myLoadedModel  = await	tf.loadModel('file:///android_asset/www/myClassifierModel01.json')  
+      document.getElementById('myInFile').value = 'file:///android_asset/www/myClassifierModel01.json'   // correct path for Android App 
 
-   } else {
+   } 
    
  
-      const myLoadedModel  = await	tf.loadModel(document.getElementById('myInFile').value)   
+   const myLoadedModel  = await	tf.loadModel(document.getElementById('myInFile').value)   
    
-   }
+  
    console.log('myLoadedModel.layers.length')   
    console.log(myLoadedModel.layers.length) 
                                            
