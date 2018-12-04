@@ -112,7 +112,6 @@ document.head.appendChild(script);
  
  
 <input type="hidden" id="myInFile" size="120" value="https://hpssjellis.github.io/celeb2-classify/myClassifierModel01.json"> <br>
-<!-- <input type="hidden" id="myInText" size="120" value="https://hpssjellis.github.io/celeb2-classify/myClassifierLinks.txt"> <br> -->
  
  <input type=button style="font-size:25px;" value=" Train " onclick="{
     myOkToTrain = true
@@ -365,13 +364,17 @@ async function onPlay() {
 async function run() {
  
  if (isPhoneGapWebView){
-     // window.open = cordova.InAppBrowser.open;
- }
+   await faceapi.loadTinyFaceDetectorModel('file:///android_asset/www/')
+   await faceapi.loadFaceLandmarkTinyModel('file:///android_asset/www/')
+ }  else {
  
  
   // myOrient()
    await faceapi.loadTinyFaceDetectorModel('https://hpssjellis.github.io/celeb2-classify/')
    await faceapi.loadFaceLandmarkTinyModel('https://hpssjellis.github.io/celeb2-classify/')
+ }
+ 
+ 
  
   if(window.orientation == 0){
       // portrait
@@ -566,8 +569,17 @@ mySetClassiferModelWeights  = async function(){
 //////////////////////////////////////////////////////////////////////////////
 myClassifierLoad  = async function(){
    // note global variable called        myIncomingClassifier        
-                                                                                             
-   const myLoadedModel  = await	tf.loadModel(document.getElementById('myInFile').value)                                                                                          
+   
+    if (isPhoneGapWebView){
+      
+      const myLoadedModel  = await	tf.loadModel('file:///android_asset/www/myClassifierModel01.json')  
+
+   } else {
+   
+ 
+      const myLoadedModel  = await	tf.loadModel(document.getElementById('myInFile').value)   
+   
+   }
    console.log('myLoadedModel.layers.length')   
    console.log(myLoadedModel.layers.length) 
                                            
