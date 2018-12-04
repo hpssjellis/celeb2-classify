@@ -359,8 +359,8 @@ async function onPlay() {
 async function run() {
  
  if (isPhoneGapWebView){
-   await faceapi.loadTinyFaceDetectorModel('file:///android_asset/www/')
-   await faceapi.loadFaceLandmarkTinyModel('file:///android_asset/www/')
+   await faceapi.loadTinyFaceDetectorModel('file:///android_asset/')
+   await faceapi.loadFaceLandmarkTinyModel('file:///android_asset/')
  }  else {
  
  
@@ -567,7 +567,7 @@ myClassifierLoad  = async function(){
    
     if (isPhoneGapWebView){
       
-      document.getElementById('myInFile').value = 'file:///android_asset/www/myClassifierModel01.json'   // correct path for Android App 
+      document.getElementById('myInFile').value = 'file:///android_asset/myClassifierModel01.json'   // correct path for Android App 
 
    } 
    
