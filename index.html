@@ -119,21 +119,22 @@ document.head.appendChild(script);
     
     document.getElementById('myClassText').style.display = 'inline'   // can't as of yet save files with a mobile app
     document.getElementById('myClassNumber').style.display = 'inline'  
-    document.getElementById('mySaveButton').style.display = 'inline' 
+
     document.getElementById('myShowButton').style.display = 'inline'    
     document.getElementById('myGoogleButton').style.display = 'inline' 
     document.getElementById('myDataButton').style.display = 'inline'                                                                 
                                                                      
     document.getElementById('myClassText').style.visibility = 'visible'   
-    document.getElementById('myClassNumber').style.visibility = 'visible' 
-    document.getElementById('mySaveButton').style.visibility = 'visible'     
+    document.getElementById('myClassNumber').style.visibility = 'visible'  
     document.getElementById('myShowButton').style.visibility = 'visible'  
     document.getElementById('myGoogleButton').style.visibility = 'visible'  
     document.getElementById('myDataButton').style.visibility = 'visible'  
     document.getElementById('myClassText').value = 'Enter Name here'  
     if (myDebug){    
+        document.getElementById('mySaveButton').style.visibility = 'visible'    
         document.getElementById('myClearButton').style.visibility = 'visible'   
-        document.getElementById('myClear2Button').style.visibility = 'visible' 
+        document.getElementById('myClear2Button').style.visibility = 'visible'     
+        document.getElementById('mySaveButton').style.display = 'inline' 
         document.getElementById('myClearButton').style.display = 'inline'   
         document.getElementById('myClear2Button').style.display = 'inline'                                                                 
     } else {                                                             
