@@ -19,7 +19,8 @@
  
 
 let myDebug = false 
- 
+let myOkToTrain = false
+
 var isPhoneGapWebView = location.href.match(/^file:/); // returns true for PhoneGap app
   
 if (isPhoneGapWebView){
@@ -39,7 +40,7 @@ function onDeviceReady() {
 script.src = 'cordova.js';
 document.head.appendChild(script);
  */
- 
+    myOkToTrain = false
     window.open = cordova.InAppBrowser.open; 
     document.getElementById('myClassText').style.display = 'none'   // can't as of yet save files with a mobile app
     document.getElementById('myClassNumber').style.display = 'none'  
@@ -66,6 +67,7 @@ document.head.appendChild(script);
 
 <input type=button style="font-size:25px; background-color:lime; " value=" Start " onclick="{
     this.style.backgroundColor = 'LightGray'
+    onDeviceReady()                                                                                        
     myClassifierLoad()
     run()
     myClock = setInterval('myNewPredict(myFaceLandmarks)',myInterval)                                                               
@@ -249,7 +251,7 @@ let myIncomingClassifier = []
 
 let myClock
 let myInterval = 2000   // starting prediction time in ms
-let myOkToTrain = false
+
 ////////////////////////// A few helper functions ///////////////////////////////////////////   
 
 
