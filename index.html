@@ -35,21 +35,14 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
  
+ restart()
+ 
  /*
  var script = document.createElement('script');
 script.src = 'cordova.js';
 document.head.appendChild(script);
  */
-    myOkToTrain = false
-    window.open = cordova.InAppBrowser.open; 
-    document.getElementById('myClassText').style.display = 'none'   // can't as of yet save files with a mobile app
-    document.getElementById('myClassNumber').style.display = 'none'  
-    document.getElementById('mySaveButton').style.display = 'none'   // can't as of yet save files with a mobile app
-    document.getElementById('myShowButton').style.display = 'none'  
-    document.getElementById('myGoogleButton').style.display = 'none'  
-    document.getElementById('myDataButton').style.display = 'none'   
-    document.getElementById('myClearButton').style.display = 'none'   
-    document.getElementById('myClear2Button').style.display = 'none'   
+
 // alert('ready')
 } 
  
@@ -67,7 +60,7 @@ document.head.appendChild(script);
 
 <input type=button style="font-size:25px; background-color:lime; " value=" Start " onclick="{
     this.style.backgroundColor = 'LightGray'
-    onDeviceReady()                                                                                        
+    restart()                                                                                        
     myClassifierLoad()
     run()
     myClock = setInterval('myNewPredict(myFaceLandmarks)',myInterval)                                                               
@@ -253,6 +246,21 @@ let myClock
 let myInterval = 2000   // starting prediction time in ms
 
 ////////////////////////// A few helper functions ///////////////////////////////////////////   
+function restart(){  
+    myOkToTrain = false
+    window.open = cordova.InAppBrowser.open; 
+    document.getElementById('myClassText').style.display = 'none'   // can't as of yet save files with a mobile app
+    document.getElementById('myClassNumber').style.display = 'none'  
+    document.getElementById('mySaveButton').style.display = 'none'   // can't as of yet save files with a mobile app
+    document.getElementById('myShowButton').style.display = 'none'  
+    document.getElementById('myGoogleButton').style.display = 'none'  
+    document.getElementById('myDataButton').style.display = 'none'   
+    document.getElementById('myClearButton').style.display = 'none'   
+    document.getElementById('myClear2Button').style.display = 'none'   
+ 
+ }
+
+
 
 
 
