@@ -248,7 +248,9 @@ let myInterval = 2000   // starting prediction time in ms
 ////////////////////////// A few helper functions ///////////////////////////////////////////   
 function restart(){  
     myOkToTrain = false
-    window.open = cordova.InAppBrowser.open; 
+    if (isPhoneGapWebView){
+         window.open = cordova.InAppBrowser.open; 
+    }
     document.getElementById('myClassText').style.display = 'none'   // can't as of yet save files with a mobile app
     document.getElementById('myClassNumber').style.display = 'none'  
     document.getElementById('mySaveButton').style.display = 'none'   // can't as of yet save files with a mobile app
