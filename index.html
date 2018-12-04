@@ -37,6 +37,8 @@ document.head.appendChild(script);
  */
  
     window.open = cordova.InAppBrowser.open; 
+    document.getElementById('myClassText').style.display = 'none'   // can't as of yet save files with a mobile app
+    document.getElementById('myClassNumber').style.display = 'none'  
     document.getElementById('mySaveButton').style.display = 'none'   // can't as of yet save files with a mobile app
     document.getElementById('myShowButton').style.display = 'none'  
     document.getElementById('myGoogleButton').style.display = 'none'  
@@ -114,6 +116,15 @@ document.head.appendChild(script);
  
  <input type=button style="font-size:25px;" value=" Train " onclick="{
     myOkToTrain = true
+                                                                     
+    
+    document.getElementById('myClassText').style.display = 'inline'   // can't as of yet save files with a mobile app
+    document.getElementById('myClassNumber').style.display = 'inline'  
+    document.getElementById('mySaveButton').style.display = 'inline' 
+    document.getElementById('myShowButton').style.display = 'inline'    
+    document.getElementById('myGoogleButton').style.display = 'inline' 
+    document.getElementById('myDataButton').style.display = 'inline'                                                                 
+                                                                     
     document.getElementById('myClassText').style.visibility = 'visible'   
     document.getElementById('myClassNumber').style.visibility = 'visible' 
     document.getElementById('mySaveButton').style.visibility = 'visible'     
@@ -122,7 +133,9 @@ document.head.appendChild(script);
     document.getElementById('myDataButton').style.visibility = 'visible'  
     if (myDebug){    
         document.getElementById('myClearButton').style.visibility = 'visible'   
-        document.getElementById('myClear2Button').style.visibility = 'visible'                                                             
+        document.getElementById('myClear2Button').style.visibility = 'visible' 
+        document.getElementById('myClearButton').style.display = 'inline'   
+        document.getElementById('myClear2Button').style.display = 'inline'                                                                 
     } else {                                                             
         document.getElementById('myClearButton').click()                                                               
     }                                                                 
@@ -131,14 +144,14 @@ document.head.appendChild(script);
 
 
  
- <input type=text id="myClassText" style="font-size:25px; width:60%; visibility:hidden;" value = "Joe Smith" onFocus="{
+ <input type=text id="myClassText" style="font-size:25px; width:60%; visibility:hidden; display:inline" value = "Joe Smith" onFocus="{
      this.value = ''    // clear the value on entry  
      document.getElementById('myClassNumber').value = parseInt(document.getElementById('myClassNumber').value) + 1 
                                                                                                                       
    //  classifier.clearClass(parseInt(document.getElementById('myClassNumber').value)) 
      clearInterval(myClock)
  }">     
-<input type=number id="myClassNumber" style="font-size:25px; width:10%; visibility:hidden;" value = "0" onChange="{
+<input type=number id="myClassNumber" style="font-size:25px; width:10%; visibility:hidden; display:inline" value = "0" onChange="{
     document.getElementById('myClassText').value =  myGroups[parseInt(document.getElementById('myClassNumber').value)]                                                                                                             
     
     const x =  parseInt(document.getElementById('myClassNumber').value)
