@@ -368,9 +368,10 @@ async function run() {
    await faceapi.loadTinyFaceDetectorModel('https://hpssjellis.github.io/celeb2-classify/')
    await faceapi.loadFaceLandmarkTinyModel('https://hpssjellis.github.io/celeb2-classify/')
  }
- 
-  if (window.plugin.CanvasCamera) {
+  if (isPhoneGapWebView){
+     if (window.plugin.CanvasCamera) {
           window.plugin.CanvasCamera.initialize(videoEl);
+     }
   }
  
   if(window.orientation == 0){
