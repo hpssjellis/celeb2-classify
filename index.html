@@ -377,10 +377,10 @@ async function onPlay() {
   } 
  
  
-   const options = new faceapi.TinyFaceDetectorOptions({ inputSize: 128, scoreThreshold : 0.3 }) 
+   const options2 = new faceapi.TinyFaceDetectorOptions({ inputSize: 128, scoreThreshold : 0.3 }) 
 
    
-   result = await faceapi.detectSingleFace(videoEl, options).withFaceLandmarks(true)
+   result = await faceapi.detectSingleFace(videoEl, options2).withFaceLandmarks(true)
    if (result) {
        myFaceLandmarks = result._unshiftedLandmarks._positions;   // to pass to other areas
        drawLandmarks(videoEl, document.getElementById('overlay'), [result], true)
