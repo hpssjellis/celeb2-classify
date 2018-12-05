@@ -68,9 +68,11 @@ document.head.appendChild(script);
 <input type=button style="font-size:25px;" value="Switch to Environment" onclick="{
    if (this.value == 'Switch to Environment'){                                                       
        myCamera = 'environment'
+       myPhonegapCamera = 'back'                                                                           
        this.value = 'Switch to User' 
     } else {                                                      
        myCamera = 'user'
+       myPhonegapCamera = 'front'
        this.value = 'Switch to Environment'                                                     
     }                                                         
     videoEl.srcObject.getTracks().forEach(track => track.stop()) 
@@ -229,6 +231,7 @@ document.head.appendChild(script);
  
 let stream  
 let myCamera = 'user'  
+let myPhonegapCamera = 'front'  
 const videoEl = document.getElementById('inputVideo')  
 
 classifier = knnClassifier.create();                                     
@@ -346,6 +349,10 @@ async function onPlay() {
                 videoEl: window.document.getElementById('videoEl'),
           });
 
+      
+      
+        if(window.orientation == 0){
+           // portrait
            var options = {
               canvas: {
                 width: 640,
@@ -362,8 +369,34 @@ async function onPlay() {
              // hasThumbnail: false,
               //thumbnailRatio: 1/6,
              // cameraFacing: this.position
-              cameraFacing: 'front'
+              cameraFacing: myPhonegapCamera
           };
+        } else {
+                var options = {
+              canvas: {
+                width: 480,
+                height: 640
+              },
+              capture: {
+                width: 480,
+                height: 640
+              },
+             // use: 'file',
+              use: 'data',
+              fps: 30,
+             // flashMode: this.flash,
+             // hasThumbnail: false,
+              //thumbnailRatio: 1/6,
+             // cameraFacing: this.position
+              cameraFacing: myPhonegapCamera
+          };   
+        
+        
+        }
+      
+      
+      
+      
           window.plugin.CanvasCamera.start(options, function(error) {
             console.log('[CanvasCamera start]', 'error', error);
           }, function(data) {
@@ -408,7 +441,7 @@ async function run() {
    await faceapi.loadFaceLandmarkTinyModel('https://hpssjellis.github.io/celeb2-classify/')
  }
 
- 
+    if (isPhoneGapWebView){} else {
   if(window.orientation == 0){
       // portrait
       stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: myCamera, width:480, height:640 }, audio: false}) 
@@ -419,7 +452,7 @@ async function run() {
    
    videoEl.srcObject = stream
   }
-
+}
   
   
 //window.plugin.CanvasCamera.start(options);  
