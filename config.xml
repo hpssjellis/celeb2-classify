@@ -2,8 +2,8 @@
 <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:cdv="http://cordova.apache.org/ns/1.0"
     id          = "com.rocksetta.knn_celebrity"
-    versionCode = "20"
-    version     = "1.10.20" >      <!-- Change this before each compile -->
+    versionCode = "22"
+    version     = "1.11.22" >      <!-- Change this before each compile -->
 
   <name>Party App: Celebrity Face Match</name>
   <description>
