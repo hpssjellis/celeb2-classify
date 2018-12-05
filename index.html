@@ -337,7 +337,46 @@ function drawLandmarks(dimensions, canvas, results, withBoxes = true) {
   
 async function onPlay() {
 
-   const videoEl = document.getElementById('inputVideo')
+  // const videoEl = document.getElementById('inputVideo')
+ 
+   if (isPhoneGapWebView){
+     if (window.plugin.CanvasCamera) {
+         // window.plugin.CanvasCamera.initialize(videoEl);
+          window.plugin.CanvasCamera.initialize({
+                videoEl: window.document.getElementById('videoEl'),
+          });
+
+           var options = {
+              canvas: {
+                width: 640,
+                height: 480
+              },
+              capture: {
+                width: 640,
+                height: 480
+              },
+             // use: 'file',
+              use: 'data',
+              fps: 30,
+             // flashMode: this.flash,
+             // hasThumbnail: false,
+              //thumbnailRatio: 1/6,
+             // cameraFacing: this.position
+              cameraFacing: 'front'
+          };
+          window.plugin.CanvasCamera.start(options, function(error) {
+            console.log('[CanvasCamera start]', 'error', error);
+          }, function(data) {
+          
+            // console.log('[CanvasCamera start]', 'data', data);
+          });
+        }
+   
+   
+   
+  } 
+ 
+ 
    const options = new faceapi.TinyFaceDetectorOptions({ inputSize: 128, scoreThreshold : 0.3 }) 
 
    
@@ -368,42 +407,7 @@ async function run() {
    await faceapi.loadTinyFaceDetectorModel('https://hpssjellis.github.io/celeb2-classify/')
    await faceapi.loadFaceLandmarkTinyModel('https://hpssjellis.github.io/celeb2-classify/')
  }
-  if (isPhoneGapWebView){
-     if (window.plugin.CanvasCamera) {
-          window.plugin.CanvasCamera.initialize(videoEl);
-     }
-   
-          if (window.plugin.CanvasCamera) {
-           var options = {
-              canvas: {
-                width: 640,
-                height: 480
-              },
-              capture: {
-                width: 640,
-                height: 480
-              },
-             // use: 'file',
-              use: 'data',
-              fps: 30,
-             // flashMode: this.flash,
-             // hasThumbnail: false,
-              //thumbnailRatio: 1/6,
-             // cameraFacing: this.position
-              cameraFacing: 'front'
-          };
-          window.plugin.CanvasCamera.start(options, function(error) {
-            console.log('[CanvasCamera start]', 'error', error);
-          }, function(data) {
-           
-              onPlay()   // does this work??
-            // console.log('[CanvasCamera start]', 'data', data);
-          });
-        }
-   
-   
-   
-  } else {   // not phonegap
+
  
   if(window.orientation == 0){
       // portrait
@@ -415,7 +419,7 @@ async function run() {
    
    videoEl.srcObject = stream
   }
-}
+
   
   
 //window.plugin.CanvasCamera.start(options);  
