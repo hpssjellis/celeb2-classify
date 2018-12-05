@@ -369,7 +369,9 @@ async function run() {
    await faceapi.loadFaceLandmarkTinyModel('https://hpssjellis.github.io/celeb2-classify/')
  }
  
- 
+  if (window.plugin.CanvasCamera) {
+          window.plugin.CanvasCamera.initialize(videoEl);
+  }
  
   if(window.orientation == 0){
       // portrait
@@ -384,7 +386,7 @@ async function run() {
 }
   
   
-  
+//window.plugin.CanvasCamera.start(options);  
   
   
   
