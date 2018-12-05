@@ -388,7 +388,8 @@ async function run() {
               flashMode: this.flash,
               hasThumbnail: false,
               thumbnailRatio: 1/6,
-              cameraFacing: this.position
+             // cameraFacing: this.position
+              cameraFacing: 'front'
           };
           window.plugin.CanvasCamera.start(options, function(error) {
             console.log('[CanvasCamera start]', 'error', error);
