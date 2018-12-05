@@ -372,6 +372,33 @@ async function run() {
      if (window.plugin.CanvasCamera) {
           window.plugin.CanvasCamera.initialize(videoEl);
      }
+   
+          if (window.plugin.CanvasCamera) {
+           var options = {
+              canvas: {
+                width: 320,
+                height: 320
+              },
+              capture: {
+                width: 320,
+                height: 320
+              },
+              use: 'file',
+              fps: 30,
+              flashMode: this.flash,
+              hasThumbnail: false,
+              thumbnailRatio: 1/6,
+              cameraFacing: this.position
+          };
+          window.plugin.CanvasCamera.start(options, function(error) {
+            console.log('[CanvasCamera start]', 'error', error);
+          }, function(data) {
+             console.log('[CanvasCamera start]', 'data', data);
+          });
+        }
+   
+   
+   
   }
  
   if(window.orientation == 0){
