@@ -337,7 +337,7 @@ function drawLandmarks(dimensions, canvas, results, withBoxes = true) {
   
 async function onPlay() {
 
-   const videoEl = document.getElementById('inputVideo')
+  // const videoEl = document.getElementById('inputVideo')
    const options = new faceapi.TinyFaceDetectorOptions({ inputSize: 128, scoreThreshold : 0.3 }) 
 
    
@@ -394,13 +394,13 @@ async function run() {
           window.plugin.CanvasCamera.start(options, function(error) {
             console.log('[CanvasCamera start]', 'error', error);
           }, function(data) {
-             console.log('[CanvasCamera start]', 'data', data);
+            // console.log('[CanvasCamera start]', 'data', data);
           });
         }
    
    
    
-  }
+  } else {
  
   if(window.orientation == 0){
       // portrait
@@ -411,7 +411,7 @@ async function run() {
   }
    
    videoEl.srcObject = stream
-
+  }
 }
   
   
