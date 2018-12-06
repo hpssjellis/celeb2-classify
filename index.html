@@ -82,10 +82,7 @@ document.head.appendChild(script);
    if (isPhoneGapWebView){
      if (window.plugin.CanvasCamera) {
          // window.plugin.CanvasCamera.initialize(videoEl);
-          window.plugin.CanvasCamera.initialize({
-                videoEl: window.document.getElementById('videoEl'),
-          });
-
+          window.plugin.CanvasCamera.initialize(window.document.getElementById('videoEl'))
            var options = {
               canvas: {
                 width: 640,
@@ -101,8 +98,7 @@ document.head.appendChild(script);
           };
           window.plugin.CanvasCamera.start(options, function(error) {
             console.log('[CanvasCamera start]', 'error', error);
-          }, function(data) {
-          
+          }, function(data) {        
             // console.log('[CanvasCamera start]', 'data', data);
           });
         }
