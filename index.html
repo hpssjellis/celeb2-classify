@@ -81,9 +81,6 @@ document.head.appendChild(script);
    videoEl.srcObject.getTracks().forEach(track => track.stop()) 
    clearInterval(myClock)
 }"><br><br>
- <input type=button id="myFaster" style="font-size:25px;" value="do it" onclick="{   
-   myDoIt()                                                                 
-}"> 
 
  <input type=button id="myFaster" style="font-size:25px;" value=" Faster " onclick="{   
   this.style.backgroundColor = 'LightGray'                                                                                 
@@ -338,23 +335,6 @@ function drawLandmarks(dimensions, canvas, results, withBoxes = true) {
   
 ////////////////////////// The 2 Main functions ///////////////////////////////////////////  
   
-async function myDoIt() {
-  
-   const options2 = new faceapi.TinyFaceDetectorOptions({ inputSize: 128, scoreThreshold : 0.3 }) 
-
-   
-   result = await faceapi.detectSingleFace(videoEl, options2).withFaceLandmarks(true)
-   if (result) {
-       myFaceLandmarks = result._unshiftedLandmarks._positions;   // to pass to other areas
-       drawLandmarks(videoEl, document.getElementById('overlay'), [result], true)
-        
-   }
-}
- 
- 
- 
- 
- 
 async function onPlay() {
 
   // const videoEl = document.getElementById('inputVideo')
@@ -375,8 +355,8 @@ async function onPlay() {
                 width: 640,
                 height: 480
               },
-              use: 'file',
-             // use: 'data',
+             // use: 'file',
+              use: 'data',
               fps: 30,
              // flashMode: this.flash,
              // hasThumbnail: false,
