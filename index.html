@@ -80,9 +80,10 @@ document.head.appendChild(script);
 <input type=button style="font-size:25px; background-color:lime; " value=" Phonegap " onclick="{ 
 
    if (isPhoneGapWebView){
-     if (window.plugin.CanvasCamera) {
-         // window.plugin.CanvasCamera.initialize(videoEl);
-          window.plugin.CanvasCamera.initialize(window.document.getElementById('videoEl'))
+     if (window.plugin.CanvasCamera) {                                                                                              
+          window.plugin.CanvasCamera.initialize({
+                fullsize: window.document.getElementById('videoEl'),
+          });
            var options = {
               canvas: {
                 width: 640,
