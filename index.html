@@ -90,7 +90,12 @@ document.head.appendChild(script);
   if (myInterval > 250  ) {myInterval = myInterval - 200}   
   document.getElementById('myInt').value = myInterval                                                                           
   myClock = setInterval('myNewPredict(myFaceLandmarks)',myInterval)                                                                    
+}">  
+ 
+ <input type=button id="myFaster" style="font-size:25px;" value="do " onclick="{   
+   myDoIt()                                                                 
 }"> 
+
 
  <input type=button style="font-size:25px;" value=" Slower " onclick="{
   clearInterval(myClock)
