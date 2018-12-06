@@ -406,7 +406,7 @@ async function run() {
   // myOrient()
    await faceapi.loadTinyFaceDetectorModel('https://hpssjellis.github.io/celeb2-classify/')
    await faceapi.loadFaceLandmarkTinyModel('https://hpssjellis.github.io/celeb2-classify/')
- }
+
 
  
   if(window.orientation == 0){
@@ -418,9 +418,9 @@ async function run() {
   }
    
    videoEl.srcObject = stream
-  }
+  }  // end not phonegap
 
-  
+}   
   
 //window.plugin.CanvasCamera.start(options);  
   
