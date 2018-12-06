@@ -369,10 +369,10 @@ async function onPlay() {
           });
 
       
-      
+      let options
         if(window.orientation == 0){
            // portrait
-           var options = {
+           options = {
               canvas: {
                 width: 640,
                 height: 480
@@ -391,7 +391,7 @@ async function onPlay() {
               cameraFacing: myPhonegapCamera
           };
         } else {
-                var options = {
+                options = {
               canvas: {
                 width: 480,
                 height: 640
