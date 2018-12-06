@@ -68,11 +68,9 @@ document.head.appendChild(script);
 <input type=button style="font-size:25px;" value="Switch to Environment" onclick="{
    if (this.value == 'Switch to Environment'){                                                       
        myCamera = 'environment'
-       myPhonegapCamera = 'back'                                                                           
        this.value = 'Switch to User' 
     } else {                                                      
        myCamera = 'user'
-       myPhonegapCamera = 'front'
        this.value = 'Switch to Environment'                                                     
     }                                                         
     videoEl.srcObject.getTracks().forEach(track => track.stop()) 
@@ -90,12 +88,7 @@ document.head.appendChild(script);
   if (myInterval > 250  ) {myInterval = myInterval - 200}   
   document.getElementById('myInt').value = myInterval                                                                           
   myClock = setInterval('myNewPredict(myFaceLandmarks)',myInterval)                                                                    
-}">  
- 
- <input type=button id="myFaster" style="font-size:25px;" value="do " onclick="{   
-   myDoIt()                                                                 
 }"> 
-
 
  <input type=button style="font-size:25px;" value=" Slower " onclick="{
   clearInterval(myClock)
@@ -236,7 +229,6 @@ document.head.appendChild(script);
  
 let stream  
 let myCamera = 'user'  
-let myPhonegapCamera = 'front'  
 const videoEl = document.getElementById('inputVideo')  
 
 classifier = knnClassifier.create();                                     
@@ -342,9 +334,48 @@ function drawLandmarks(dimensions, canvas, results, withBoxes = true) {
 
   
 ////////////////////////// The 2 Main functions ///////////////////////////////////////////  
+  
+async function onPlay() {
+
+  // const videoEl = document.getElementById('inputVideo')
  
+   if (isPhoneGapWebView){
+     if (window.plugin.CanvasCamera) {
+         // window.plugin.CanvasCamera.initialize(videoEl);
+          window.plugin.CanvasCamera.initialize({
+                videoEl: window.document.getElementById('videoEl'),
+          });
+
+           var options = {
+              canvas: {
+                width: 640,
+                height: 480
+              },
+              capture: {
+                width: 640,
+                height: 480
+              },
+             // use: 'file',
+              use: 'data',
+              fps: 30,
+             // flashMode: this.flash,
+             // hasThumbnail: false,
+              //thumbnailRatio: 1/6,
+             // cameraFacing: this.position
+              cameraFacing: 'front'
+          };
+          window.plugin.CanvasCamera.start(options, function(error) {
+            console.log('[CanvasCamera start]', 'error', error);
+          }, function(data) {
+          
+            // console.log('[CanvasCamera start]', 'data', data);
+          });
+        }
+   
+   
+   
+  } 
  
-async function myDoIt() {
  
    const options2 = new faceapi.TinyFaceDetectorOptions({ inputSize: 128, scoreThreshold : 0.3 }) 
 
@@ -360,84 +391,8 @@ async function myDoIt() {
      //   Math.round(result._unshiftedLandmarks._positions[0]._y) +'<br>' 
         
    }
-}
-  
-async function onPlay() {
 
-  // const videoEl = document.getElementById('inputVideo')
- 
-   if (isPhoneGapWebView){
-     if (window.plugin.CanvasCamera) {
-         // window.plugin.CanvasCamera.initialize(videoEl);
-          window.plugin.CanvasCamera.initialize({
-                videoEl: window.document.getElementById('videoEl'),
-          });
-
-      
-      let options
-        if(window.orientation == 0){
-           // portrait
-           options = {
-              canvas: {
-                width: 640,
-                height: 480
-              },
-              capture: {
-                width: 640,
-                height: 480
-              },
-             // use: 'file',
-              use: 'data',
-              fps: 30,
-             // flashMode: this.flash,
-             // hasThumbnail: false,
-              //thumbnailRatio: 1/6,
-             // cameraFacing: this.position
-              cameraFacing: myPhonegapCamera
-          };
-        } else {
-                options = {
-              canvas: {
-                width: 480,
-                height: 640
-              },
-              capture: {
-                width: 480,
-                height: 640
-              },
-             // use: 'file',
-              use: 'data',
-              fps: 30,
-             // flashMode: this.flash,
-             // hasThumbnail: false,
-              //thumbnailRatio: 1/6,
-             // cameraFacing: this.position
-              cameraFacing: myPhonegapCamera
-          };   
-        
-        
-        }
-      
-      
-      
-      
-          window.plugin.CanvasCamera.start(options, function(error) {
-            console.log('[CanvasCamera start]', 'error', error);
-          }, function(data) {
-           // myDoIt()
-            // console.log('[CanvasCamera start]', 'data', data);
-          });
-        }
-   
-   
-   
-  }  else {   // not phonegap
-    myDoIt()
     setTimeout(() => onPlay())
-  }
- 
- 
-
 }
 
 async function run() {
@@ -453,7 +408,7 @@ async function run() {
    await faceapi.loadFaceLandmarkTinyModel('https://hpssjellis.github.io/celeb2-classify/')
  }
 
-    if (isPhoneGapWebView){} else {
+ 
   if(window.orientation == 0){
       // portrait
       stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: myCamera, width:480, height:640 }, audio: false}) 
@@ -464,7 +419,7 @@ async function run() {
    
    videoEl.srcObject = stream
   }
-}
+
   
   
 //window.plugin.CanvasCamera.start(options);  
