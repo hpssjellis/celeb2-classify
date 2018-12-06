@@ -337,6 +337,25 @@ function drawLandmarks(dimensions, canvas, results, withBoxes = true) {
 
   
 ////////////////////////// The 2 Main functions ///////////////////////////////////////////  
+ 
+ 
+async function myDoIt() {
+ 
+   const options2 = new faceapi.TinyFaceDetectorOptions({ inputSize: 128, scoreThreshold : 0.3 }) 
+
+   
+   result = await faceapi.detectSingleFace(videoEl, options2).withFaceLandmarks(true)
+   if (result) {
+       myFaceLandmarks = result._unshiftedLandmarks._positions;   // to pass to other areas
+       drawLandmarks(videoEl, document.getElementById('overlay'), [result], true)
+       
+      // Just printing the first of 68 face landmark x and y 
+    //  document.getElementById('myDiv03').innerHTML = 'First of 68 face landmarks, x: '+ 
+     //   Math.round(result._unshiftedLandmarks._positions[0]._x) + ', y: '+ 
+     //   Math.round(result._unshiftedLandmarks._positions[0]._y) +'<br>' 
+        
+   }
+}
   
 async function onPlay() {
 
@@ -400,30 +419,18 @@ async function onPlay() {
           window.plugin.CanvasCamera.start(options, function(error) {
             console.log('[CanvasCamera start]', 'error', error);
           }, function(data) {
-          
+            myDoIt()
             // console.log('[CanvasCamera start]', 'data', data);
           });
         }
    
    
    
-  } 
+  }  else {   // not phonegap
+    myDoIt()
+  }
  
  
-   const options2 = new faceapi.TinyFaceDetectorOptions({ inputSize: 128, scoreThreshold : 0.3 }) 
-
-   
-   result = await faceapi.detectSingleFace(videoEl, options2).withFaceLandmarks(true)
-   if (result) {
-       myFaceLandmarks = result._unshiftedLandmarks._positions;   // to pass to other areas
-       drawLandmarks(videoEl, document.getElementById('overlay'), [result], true)
-       
-      // Just printing the first of 68 face landmark x and y 
-    //  document.getElementById('myDiv03').innerHTML = 'First of 68 face landmarks, x: '+ 
-     //   Math.round(result._unshiftedLandmarks._positions[0]._x) + ', y: '+ 
-     //   Math.round(result._unshiftedLandmarks._positions[0]._y) +'<br>' 
-        
-   }
 
     setTimeout(() => onPlay())
 }
