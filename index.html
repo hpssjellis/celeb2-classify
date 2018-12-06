@@ -7,13 +7,18 @@
 <script src="tfjs13-1.js"></script> 
 <script src="knn-classifier0-2-2.js"></script> 
   
+  
+  
+  
+    
+    
 
   
   
 <script>
  
 
-let myDebug = true 
+let myDebug = false 
 let myOkToTrain = false
 
 var isPhoneGapWebView = location.href.match(/^file:/); // returns true for PhoneGap app
@@ -51,6 +56,59 @@ document.head.appendChild(script);
 
  
 <div id="myDiv03"></div><br>  
+ 
+ 
+
+<input type=button style="font-size:25px; background-color:lime; " value=" web video " onclick="{ 
+  if(window.orientation == 0){
+      // portrait
+      stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: myCamera, width:480, height:640 }, audio: false}) 
+  } else {
+      // landscape
+      stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: myCamera, width:640, height:480 }, audio: false})
+  }
+   
+   videoEl.srcObject = stream
+ }"> 
+ 
+ 
+
+<input type=button style="font-size:25px; background-color:lime; " value=" Phonegap " onclick="{ 
+
+   if (isPhoneGapWebView){
+     if (window.plugin.CanvasCamera) {
+         // window.plugin.CanvasCamera.initialize(videoEl);
+          window.plugin.CanvasCamera.initialize({
+                videoEl: window.document.getElementById('videoEl'),
+          });
+
+           var options = {
+              canvas: {
+                width: 640,
+                height: 480
+              },
+              capture: {
+                width: 640,
+                height: 480
+              },
+              use: 'file',
+              fps: 30,
+              cameraFacing: 'front'
+          };
+          window.plugin.CanvasCamera.start(options, function(error) {
+            console.log('[CanvasCamera start]', 'error', error);
+          }, function(data) {
+          
+            // console.log('[CanvasCamera start]', 'data', data);
+          });
+        }
+   
+   
+   
+  }                                                                                               
+                                                                                                
+                                                                                                
+ }">  
  
 
 <input type=button style="font-size:25px; background-color:lime; " value=" Start " onclick="{
@@ -337,50 +395,11 @@ function drawLandmarks(dimensions, canvas, results, withBoxes = true) {
   
 async function onPlay() {
 
-  // const videoEl = document.getElementById('inputVideo')
- 
-   if (isPhoneGapWebView){
-     if (window.plugin.CanvasCamera) {
-         // window.plugin.CanvasCamera.initialize(videoEl);
-          window.plugin.CanvasCamera.initialize({
-                videoEl: window.document.getElementById('videoEl'),
-          });
-
-           var options = {
-              canvas: {
-                width: 640,
-                height: 480
-              },
-              capture: {
-                width: 640,
-                height: 480
-              },
-             // use: 'file',
-              use: 'data',
-              fps: 30,
-             // flashMode: this.flash,
-             // hasThumbnail: false,
-              //thumbnailRatio: 1/6,
-             // cameraFacing: this.position
-              cameraFacing: 'front'
-          };
-          window.plugin.CanvasCamera.start(options, function(error) {
-            console.log('[CanvasCamera start]', 'error', error);
-          }, function(data) {
-          
-            // console.log('[CanvasCamera start]', 'data', data);
-          });
-        }
-   
-   
-   
-  } 
- 
- 
-   const options2 = new faceapi.TinyFaceDetectorOptions({ inputSize: 128, scoreThreshold : 0.3 }) 
+   const videoEl = document.getElementById('inputVideo')
+   const options = new faceapi.TinyFaceDetectorOptions({ inputSize: 128, scoreThreshold : 0.3 }) 
 
    
-   result = await faceapi.detectSingleFace(videoEl, options2).withFaceLandmarks(true)
+   result = await faceapi.detectSingleFace(videoEl, options).withFaceLandmarks(true)
    if (result) {
        myFaceLandmarks = result._unshiftedLandmarks._positions;   // to pass to other areas
        drawLandmarks(videoEl, document.getElementById('overlay'), [result], true)
@@ -398,31 +417,23 @@ async function onPlay() {
 async function run() {
  
  if (isPhoneGapWebView){
-   await faceapi.loadTinyFaceDetectorModel('https://www.rocksetta.com/party-app/')
-   await faceapi.loadFaceLandmarkTinyModel('https://www.rocksetta.com/party-app/')
+   await faceapi.loadTinyFaceDetectorModel('file:///android_asset/www/')
+   await faceapi.loadFaceLandmarkTinyModel('file:///android_asset/www/')
  }  else {
  
  
   // myOrient()
    await faceapi.loadTinyFaceDetectorModel('https://hpssjellis.github.io/celeb2-classify/')
    await faceapi.loadFaceLandmarkTinyModel('https://hpssjellis.github.io/celeb2-classify/')
-
-
+ }
  
-  if(window.orientation == 0){
-      // portrait
-      stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: myCamera, width:480, height:640 }, audio: false}) 
-  } else {
-      // landscape
-      stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: myCamera, width:640, height:480 }, audio: false})
-  }
-   
-   videoEl.srcObject = stream
-  }  // end not phonegap
+ 
+ 
 
-}   
+}
   
-//window.plugin.CanvasCamera.start(options);  
+  
+  
   
   
   
@@ -605,7 +616,7 @@ myClassifierLoad  = async function(){
    
     if (isPhoneGapWebView){
       
-      document.getElementById('myInFile').value = 'https://www.rocksetta.com/party-app/myClassifierModel01.json'   // correct path for Android App 
+      document.getElementById('myInFile').value = 'file:///android_asset/www/myClassifierModel01.json'   // correct path for Android App 
 
    } 
    
