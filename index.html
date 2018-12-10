@@ -58,49 +58,7 @@ document.head.appendChild(script);
  
 <div id="myDiv03"></div><br>  
  
- 
 
-<input type=button style="font-size:25px; background-color:lime; " value=" web video " onclick="{ 
-                                                                                                
-   myWebStart()
- }"> 
- 
- 
-
-<input type=button style="font-size:25px; background-color:lime; " value=" Phonegap " onclick="{ 
-
-   if (isPhoneGapWebView){
-     if (window.plugin.CanvasCamera) {                                                                                              
-          window.plugin.CanvasCamera.initialize({
-                fullsize: window.document.getElementById('videoEl'),
-          });
-           var options = {
-              canvas: {
-                width: 640,
-                height: 480
-              },
-              capture: {
-                width: 640,
-                height: 480
-              },
-              use: 'data',
-              fps: 30,
-              cameraFacing: 'front'
-          };
-          window.plugin.CanvasCamera.start(options, function(error) {
-            console.log('[CanvasCamera start]', 'error', error);
-          }, function(data) {        
-            // console.log('[CanvasCamera start]', 'data', data);
-          });
-        }
-   
-   
-   
-  }                                                                                               
-                                                                                                
-                                                                                                
- }">  
- 
 
 <input type=button style="font-size:25px; background-color:lime; " value=" Start " onclick="{
     this.style.backgroundColor = 'LightGray'
@@ -439,7 +397,7 @@ function drawLandmarks(dimensions, canvas, results, withBoxes = true) {
   
 async function onPlay() {
 
-   const videoEl = document.getElementById('inputVideo')
+  // const videoEl = document.getElementById('inputVideo')
    const options = new faceapi.TinyFaceDetectorOptions({ inputSize: 128, scoreThreshold : 0.3 }) 
 
    
