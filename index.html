@@ -242,8 +242,8 @@ const videoEl = document.getElementById('inputVideo')
 
 classifier = knnClassifier.create();                                     
 console.log('knn-classifier loaded') 
-let myFaceLandmarks    //from face detection
-myFaceLandmarks.length = 0   // reset the array if needed.
+let myFaceLandmarks =[]   //from face detection
+//myFaceLandmarks.length = 0   // reset the array if needed.
 
 let myGroups = []   // for storing classifier information
 let newArray = [] 
