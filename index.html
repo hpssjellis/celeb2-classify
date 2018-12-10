@@ -489,7 +489,7 @@ myShowInfo = async function() {
                                
  
  myNewTrain = async function(myDetectMarks){   
-
+ 
    for (let j=0;  j < myDetectMarks.length; j++ ){  
       newArray[j] = []                                                                                        
       newArray[j][0] = myDetectMarks[j].x                                                                
@@ -509,7 +509,7 @@ myShowInfo = async function() {
  
   myNewPredict = async function(myDetectMarks){   
    
-  if (classifier.getNumClasses() >= 1){ 
+  if ((classifier.getNumClasses() >= 1) && (myDetectMarks.length >= 1)) { 
    for (let j=0;  j < myDetectMarks.length; j++ ){  
       newArray[j] = []                                                                                        
       newArray[j][0] = myDetectMarks[j].x                                                                
