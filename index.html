@@ -419,8 +419,11 @@ async function onPlay() {
 async function run() {
  
  if (isPhoneGapWebView){
-   await faceapi.loadTinyFaceDetectorModel('file:///android_asset/www/')
-   await faceapi.loadFaceLandmarkTinyModel('file:///android_asset/www/')
+  // await faceapi.loadTinyFaceDetectorModel('file:///android_asset/www/')
+  // await faceapi.loadFaceLandmarkTinyModel('file:///android_asset/www/')
+  
+   await faceapi.loadTinyFaceDetectorModel('https://www.rocksetta.com/party-app/')
+   await faceapi.loadFaceLandmarkTinyModel('https://www.rocksetta.com/party-app/')
  }  else {
  
  
@@ -618,7 +621,8 @@ myClassifierLoad  = async function(){
    
     if (isPhoneGapWebView){
       
-      document.getElementById('myInFile').value = 'file:///android_asset/www/myClassifierModel01.json'   // correct path for Android App 
+      // document.getElementById('myInFile').value = 'file:///android_asset/www/myClassifierModel01.json'   // correct path for Android App 
+      document.getElementById('myInFile').value = 'https://www.rocksetta.com/party-app/myClassifierModel01.json'   // correct path for Android App 
 
    } 
    
